@@ -1,0 +1,28 @@
+---
+layout: default
+title:  About
+---
+
+I am an assistant professor of computer science at West Point. I earned my Ph.D. in computer 
+science at Texas A&M University and my M.S. and Ph.D. in computer science 
+from Rensselaer Polytechnic Institute. My research interests include high 
+performance computing, data mining, data analysis, computational biology, 
+reproducible science and experimental algorithmics. Please visit my [website](http://www.suzannejmatthews.com)
+to learn more. 
+
+Feel free to contact me if you would like to collaborate or have any 
+questions or suggestions. Thanks for visiting!
+
+The opinions expressed on this site are soley my own and do not necessarily 
+reflect the opinions of the Department of Defense or the U.S. Army. 
+
+
+<small class="meta final">
+The site content is managed in a
+<a href="http://github.com/suzannejmatthews/suzannejmatthews.github.io">git repository</a>
+and published with <a href="http://jekyllrb.com">jekyll</a>. 
+<br/>Site Layout (cc) Mark Oleson
+<a href="http://creativecommons.org/licenses/by-sa/3.0/">some rights reserved</a>.
+Some layout elements are borrowed from <a href="http://www.yaml.de/en/">YAML</a>.
+</small>
+
