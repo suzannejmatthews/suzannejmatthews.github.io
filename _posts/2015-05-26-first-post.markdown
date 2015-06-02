@@ -16,11 +16,13 @@ course that was held in Spring 2015. The course was an overall success, but
 through teaching it, I learned quite a bit about the Parallella and produced
 quite a few teaching materials associated with it. I thought GitHub would be 
 the perfect place for me to share what I have learned and developed with the 
-community at large. So, please expect the first set of posts to revolve 
-around the Parallella project. Once I get the bulk of my materials out there, 
-I'll likely start posting on other topics.
+community at large. Now that the semester is finally over, I can finally do a
+proper job of sharing the material with the community. So, please expect the 
+first set of posts to revolve around the Parallella project. Once I get the 
+bulk of my materials out there, I'll likely start posting on other topics.
 
 This beautiful theme was designed by [Mark Oleson](http://olesenm.github.io/). 
+
  
 [parallella]:      https://www.parallella.org/
 [website]:   http://suzannejmatthews.com/
