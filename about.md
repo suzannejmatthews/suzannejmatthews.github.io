@@ -4,8 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Suzanne Matthews is an assistant professor of computer science at West Point.
+She completed her Ph.D. in computer science at Texas A&M University, and 
+her M.S. and B.S. in computer science at Rensselaer Polytechnic Institute.
+Her technical interests include high performance computing, data mining, 
+computational biology, reproducible science and experimental algorithmics.
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+Contact: suzanne DOT matthews AT usma DOT edu
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+Website: [suzannejmatthews.com](http://www.suzannejmatthews.com/)
