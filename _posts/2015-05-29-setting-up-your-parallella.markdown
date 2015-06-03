@@ -46,32 +46,39 @@ the image and all other requisite files for you in the par-master.7z file that
 you can [download here][image]. Please be sure to check the Parallella website for 
 updated images.
 
-1. From the Web: Download & Install Win32 Disk Imager (you may need to use
+* From the Web: Download & Install Win32 Disk Imager (you may need to use
 admin privileges).
-2. Also Download/Install SDFormatter (you may need to use admin privileges)
-3. Insert an SD card into SD card reader slot. Use the SD card adapter that came 
+* Also Download/Install SDFormatter (you may need to use admin privileges)
+* Insert an SD card into SD card reader slot. Use the SD card adapter that came 
 with the microSD card.
-4. Open the SDFormatter program. Select the drive the SD card is in (usually the F drive). 
+* Open the SDFormatter program. Select the drive the SD card is in (usually the F drive). 
 **Be absolutely sure that the selected drive is the one associated with the SD card!**
-Click `Option`. Set The format type to `FULL (Erase)` and Format size 
-adjustment to `ON`. Click `OK`, and then click `Format`. Wait until the 
-Formatting procedure is complete. Close the SDFormatter application.
-5.Next open the Win32 Disk Imager program. Select the drive the SD card is in 
+Click `Option`. Set The format type to `FULL (Erase)` and Format size
+adjustment to `ON`. Click `OK`, and then click `Format`. Wait until the Formatting procedure is complete. Close the SDFormatter application.
+
+![](http://suzannejmatthews.com/images/sdformat1.PNG) ![](http://suzannejmatthews.com/images/sdformat2.PNG)
+
+* Next open the Win32 Disk Imager program. Select the drive the SD card is in 
 (usually the F drive). Be absolutely sure that the selected drive is the one 
 associated with the SD card!
-6. Download the  [file][image] containing the Parallella image to your Desktop and 
+* Download the  [file][image] containing the Parallella image to your Desktop and 
 extract the files. Using the folder icon in the Win32 Disk Imager program, 
 navigate to where you downloaded the image. Click on the `Write` button to 
 begin writing the image to the SD card.
-7. Once the process is done, it will appear that there is nothing on the 
+
+![](http://suzannejmatthews.com/images/win32imaging.PNG) 
+
+* Once the process is done, it will appear that there is nothing on the 
 SD card. *This is fine!*
-8. Once you are done, safely eject the SD card and remove the microSD card 
+* Once you are done, safely eject the SD card and remove the microSD card 
 from the adapter. Place the microSD card into the microSD card reader on 
 your parallela board. Connect the microUSB adapter to the power USB hub, and 
 attach the keyboard and mouse to the hub. Connect the monitor’s HDMI cable to 
 the microHDMI cable. Make sure your cable configuration matches the picture 
 below. 
-9. Boot up the board. Eventually, a login screen should appear. Login in with 
+![](http://suzannejmatthews.com/images/parallella.JPG) 
+
+* Boot up the board. Eventually, a login screen should appear. Login in with 
 username `linaro` and password `linaro`.
 
 ##Expanding the image to fit the disk
@@ -181,3 +188,4 @@ SSHing into your Parallella, take a look at my other tutorial.
 [pdf]: http://www.suzannejmatthews.com/private/Parallella_setup.pdf
 [heatsink]: https://www.parallella.org/install-the-heatsink/
 [stl]: http://www.suzannejmatthews.com/private/par-case.7z
+[sdformat1]: https://github.com/suzannejmatthews/suzannejmatthews.github.io/blob/master/_images/sdformat1.PNG
