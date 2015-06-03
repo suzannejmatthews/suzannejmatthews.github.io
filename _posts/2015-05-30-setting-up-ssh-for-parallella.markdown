@@ -15,11 +15,11 @@ this tutorial.
 ##What you will need
 This tutorial assumes that you have access to the following things:
 
-1. A Parallella Desktop Edition board that is already setup for initial use. 
-2. A Windows machine with [Putty][putty] installed. If you run OSX or Linux instead, 
+* A Parallella Desktop Edition board that is already setup for initial use. 
+* A Windows machine with [Putty][putty] installed. If you run OSX or Linux instead, 
 you should still be able to follow the majority of this tutorial using the 
 `ssh` command. 
-3. A [crossover][crossover] ethernet cable. Please note that this is *different* from the 
+* A [crossover][crossover] ethernet cable. Please note that this is *different* from the 
 standard CAT5 ethernet cable that you use to connect to the Internet! Crossover 
 cables are specifically designed to let you connect two computers directly.
  
@@ -28,8 +28,8 @@ We will first configure our Parallella board with a static IP address. This
 will allow us to connect to the board, even though our Parallella is not 
 connected to the Internet. 
 
-Boot up the Parallella using HDMI display and pull up LXTerminal. 
-Ensure/edit the file `/etc/network/interfaces` so that it contains the 
+* Boot up the Parallella using HDMI display and pull up LXTerminal. 
+* Ensure/edit the file `/etc/network/interfaces` so that it contains the 
 following lines: 
 {% highlight bash %} 
 auto eth0
@@ -37,31 +37,42 @@ iface eth0 inet static
 	address 10.0.0.3/8
 	up route add 10.0.0.2 dev eth0
 {% endhighlight %} 
-Next, edit the file `/etc/hostname` and give your board a new hostname if 
+* Next, edit the file `/etc/hostname` and give your board a new hostname if 
 you wish. `linx12345` is an example.
-Edit `\etc\hosts` and add the following line (assuming the IP address and 
+* Edit `\etc\hosts` and add the following line (assuming the IP address and 
 hostname matches the above)
 {% highlight bash %} 
 10.0.0.3 linx12345
 {% endhighlight %} 
-Reboot the board using the command `sudo shutdown -r now` to allow the OS 
-to process the changes you just made. Running `ifconfig` in the terminal when 
-the Parallella comes back up should confirm that your board's IP address is 
-now `10.0.0.3`. 
+* Reboot the board using the command `sudo shutdown -r now` to allow the OS 
+to process the changes you just made. 
+
+Running `ifconfig` in the terminal when the Parallella comes back up should 
+confirm that your board's IP address is now `10.0.0.3`. 
 
 ##Configuring your Putty Install
 We will now update our Network adapter settings on our Windows machine to 
 enable us to use a static IP address when using a crossover cable. 
 
-1. Under Control Panel, select `Network and Sharing`->`Change adapter settings`
+* Under Control Panel, select `Network and Sharing`->`Change adapter settings`
 -> `Local Area Connection`->`Properties`->
 `Internet Protocol Version 4 (TCP/IPv4)`->`Properties`
-2. Click on `Alternative Configuration`. Indicate that the IP address should be 
+
+![](http://suzannejmatthews.com/images/menu1.png) 
+![](http://suzannejmatthews.com/images/menu2.PNG)![](http://suzannejmatthews.com/images/menu3.png) 
+
+* Click on `Alternative Configuration`. Indicate that the IP address should be 
 User configured, and enter `10.0.0.2` as your IP address.
-3. Check `validate settings, if changed, upon exit` and click `OK`. 
-4. Open up a command prompt on your Desktop (SHIFT->Right Click-> Open Command Windows Here) and ensure that you have an IP address of `10.0.0.2`. If 
+
+![](http://suzannejmatthews.com/images/menu4.png)
+
+* Check `validate settings, if changed, upon exit` and click `OK`. 
+* Open up a command prompt on your Desktop (SHIFT->Right Click-> Open Command Windows Here) and ensure that you have an IP address of `10.0.0.2`. If 
 you don't, it may be necessary to reboot your machine.
-5. Connect your Parallella to the laptop using the crossover cable and turn it
+
+![](http://suzannejmatthews.com/images/windowIP.PNG) 
+
+* Connect your Parallella to the laptop using the crossover cable and turn it
 on. Ensure that you have connectivity to the board by typing `ping 10.0.0.3` 
 into the command window. You should get a series of responses from the board. 
 
@@ -69,11 +80,14 @@ into the command window. You should get a series of responses from the board.
 Since Windows does not have built in ssh, we use the Putty program to connect 
 to the board using the SSH protocol. 
 
-1. Navigate to your Putty install and double-click on `putty.exe`. 
-2. Create a new profile in Putty that looks like the following:
-3. Save the profile as Parallella-SSH. Clicking `open` should give you a
+* Navigate to your Putty install and double-click on `putty.exe`. 
+* Create a new profile in Putty that looks like the following:
+
+![](http://suzannejmatthews.com/images/putty.png) 
+
+* Save the profile as Parallella-SSH. Clicking `open` should give you a
 login prompt.
-4. Login using the `linaro` username and `linaro` password. 
+* Login using the `linaro` username and `linaro` password. 
 
 If all goes well, you should now be connected to your board! Check out the 
 follow up tutorials on learning how to program Epiphany architecture. 
@@ -87,17 +101,18 @@ are not permitted to attach our Parallella boards to our university's network,
 we used PSFTP constantly to transfer files between our laptops and the 
 Parallella board.
 
-Start by navigating to your Desktop and opening a command window. Assuming you 
+* Start by navigating to your Desktop and opening a command window. Assuming you 
 placed the psftp.exe executable in `C:\Program Files\Putty` type in the
-following: `"C:\Program Files\PUtty\psftp.exe"` and press `Enter`. 
-This will execute the PSFTP program from your Desktop. Why we are doing it 
-this way (rather than navigating to the folder and double clicking like we did 
+following: `"C:\Program Files\Putty\psftp.exe"` and press `Enter`. This will 
+execute the PSFTP program from your Desktop. Why we are doing it this way 
+(rather than navigating to the folder and double clicking like we did 
 before) will become readily apparent shortly.
 
-Let's logon to the Parallella using PSFTP. Type `open linaro@10.0.0.3` to 
-establish a connection. You should see a screen like the one below if 
-everything is successful. Ignore the `no hostname specified` message that 
-appears when PSFTP first starts up.
+* Let's logon to the Parallella using PSFTP. Type `open linaro@10.0.0.3` to 
+establish a connection, and type in the username and password.  You should see 
+a screen like the one below if everything is successful. Ignore the `no 
+hostname specified` message that appears when PSFTP first starts up.
+![](http://suzannejmatthews.com/images/PSFTP_connect.PNG) 
 
 The PSFTP prompt acts like a Linux terminal. You can `ls`, `cd` and execute 
 other Linux bash shell commands. In the following set of examples, we will be 
@@ -108,20 +123,21 @@ and your Desktop.
 To transfer files from the Parallella board and place it on the Desktop, we 
 will use the `get` command. Doing this from the `Putty` directory under 
 `Program Files` may lead to an error, since the folder may be write-protected.
-Type the following into the prompt:
+Type the following into the PSFTP prompt:
 {% highlight bash %} 
 cd parallella-examples/para-para/src
 get hello-openmp.c
 {% endhighlight %} 
 In a few seconds, the `hello-openmp.c` file should appear on your Desktop. A
 screenshot from this sesson is shown below:
+![](http://suzannejmatthews.com/images/PSFTP_get.PNG) 
 
 ###User `put` to transfer files from Windows to Parallella
 To transfer files from Windows to the Parallella board, we start in the 
 same way as before. Start `psftp` from the Desktop, and logon using 
 the command `open linaro@10.0.0.3`. Let's place the file called `data.txt` in 
 the the `parallella-examples/para-para/src` directory. Type the following into 
-the prompt:
+the PSFTP prompt:
 {% highlight bash %} 
 cd parallella-examples/para-para/src
 put data.txt
@@ -129,12 +145,10 @@ ls
 {% endhighlight %} 
 You should see `data.txt` now in the folder. A sample screenshot from this 
 session is provided below:
+![](http://suzannejmatthews.com/images/PSFTP_put.PNG) 
 
 ##Troubleshooting
-From helping my students and dealing with connection issues with of my own, 
-I've realized the the majority of the issues result from the Parallella 
-not having a static IP of `10.0.0.3` and the Windows machine not being
-configured to have the static IP `10.0.0.2`. 
+Below are a series of helpful troubleshooting tips organized in Q/A form.
 
 ###My Parallella's IP is not `10.0.0.3`!
 You may not have followed the above steps to the letter. I believe the image
