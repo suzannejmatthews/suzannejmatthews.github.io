@@ -5,8 +5,10 @@ date:   2015-05-31 10:48:21
 tags: [parallella, epiphany]
 ---
 This page serves to collect all the posts related to my teaching materials 
-for the Epiphnay programming module. Please visit the links below to access
-my lecture materials on the subject: 
+for the Epiphany programming module. This material was originally delivered
+to my students as part of my parallel computing course which debuted in 
+Spring 2015. Please visit the links below to access my lecture materials on 
+the subject: 
 
 [Running our first Epiphany Program][running]
 
