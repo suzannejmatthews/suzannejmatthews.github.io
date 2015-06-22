@@ -31,13 +31,13 @@ Are you ready? Let’s get started!
 ##What you will need
 This tutorial assumes that you bought a Parallella Desktop Edition and have 
 access to a Windows machine. If you haven't set up your Parallella yet, please
-see my instructions for initial set up.
+see [my instructions for initial set up][setup].
 
 * A laptop (with SD card reader)
 * *N=4* Parallella boards, each w/power supply
 * *N=4* cat5 ethernet cables, microSD cards (8GB preferred for inital setup; see notes)
 * a switch with access to the Internet (or a router)
-* case parts for each board (2 base boards, 4 singe connectors, 4 double connectors)
+* [case parts for each board][case] (2 base boards, 4 singe connectors, 4 double connectors)
 
 ![](http://suzannejmatthews.com/images/parallella-2.JPG) 
 
@@ -210,9 +210,9 @@ Remember these can be out of order (so don’t worry about that). If
 everything above works, hooray! You are done!
 
 ##Building the case
-Now we have *N* Parallellas nextowrked together. YOur setup probably looks like 
+Now we have *N* Parallellas networked together. YOur setup probably looks like 
 a mess. Let's build a case for our new cluster. You can use whatever you wish, 
-but we provide a 3D printed design that you may find attractive/convenient.
+but [we provide a 3D printed design][case] that you may find attractive/convenient.
 
 For a *N* node cluster, you will need at least:
 * *2xN* base boards and at least 4 connectors per layer. If you are planning 
@@ -228,7 +228,7 @@ the two base boards on each layer. Place end connectors in the holes on the
 end. Repeat with next layer, and finish by placing remaining 2 base boards on 
 top. Finished cluster is shown below:
 
-(see picture)
+![](http://suzannejmatthews.com/images/parallella-cluster.JPG) 
 
 ##Troubleshooting
 There are a number of problems you may face during setup. I've compiled a list 
@@ -270,9 +270,8 @@ See the set up tutorial for more instructions.
 
 
 
-[rpi]:     http://www.southampton.ac.uk/~sjc/raspberrypi/
-[image]:   http://www.suzannejmatthews.com/private/par-master.7z
-[pdf2]:    http://www.suzannejmatthews.com/private/Parallella_cluster.pdf
-[heatsink]: https://www.parallella.org/install-the-heatsink/
-[stl]: http://www.suzannejmatthews.com/private/par-case.7z
-[sdformat1]: https://github.com/suzannejmatthews/suzannejmatthews.github.io/blob/master/_images/sdformat1.PNG
+[rpi]: http://www.southampton.ac.uk/~sjc/raspberrypi/ 
+[image]: http://www.suzannejmatthews.com/private/par-master.7z 
+[pdf2]: http://www.suzannejmatthews.com/private/Parallella_cluster.pdf 
+[case]: http://www.thingiverse.com/thing:892684 
+[setup]: http://suzannejmatthews.github.io/2015/05/29/setting-up-your-parallella/
