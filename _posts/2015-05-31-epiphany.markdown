@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Epiphany Module"
+date:   2015-05-31 10:48:21
+tags: [parallella, epiphany]
+---
+This page serves to collect all the posts related to my teaching materials 
+for the Epiphnay programming module. Please visit the links below to access
+my lecture materials on the subject: 
+
+[Running our first Epiphany Program][running]
+
+[Overview of Epiphany Architecture][overview]
+
+[Hello Epiphany][hello]
+
+[The Dot Product Program][dot]
+
+Setting up a Parallella cluster
+
+[running]:   http://suzannejmatthews.github.io/2015/06/01/running-our-first-epiphany-program/
+[overview]:  http://suzannejmatthews.github.io/2015/06/02/epiphany-overview/
+[hello]:     http://suzannejmatthews.github.io/2015/06/03/epiphany-hello-world/
+[dot]:       http://suzannejmatthews.github.io/2015/06/09/dot-product/
