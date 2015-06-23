@@ -231,3 +231,187 @@ are being performed solely on unit vectors) the errors are not very major.
 However, if you try to change the unit vectors to some other values, the 
 program immediately breaks. We will discuss this in detail on how to improve 
 the program in the next post. For now, let's just discuss its structure.
+
+{% highlight c%}
+#include <stdlib.h>
+#include <stdio.h>
+#include <e-hal.h>
+#include "common.h"
+
+int main(int argc, char *argv[]){
+  e_platform_t platform;
+  e_epiphany_t dev;
+
+  int a[N], b[N], c[CORES];
+  int done[CORES],all_done;
+  int sop;
+  int i,j;
+  unsigned clr;
+  clr = (unsigned)0x00000000;
+{% endhighlight %}
+
+The first fifteen lines of the program are very similar to the hello world 
+program that we discussed previously. 
+* Notice once again that we declare the mandatory library `e-hal.h`, which is 
+required in all Epiphany host programs. We also include the header file 
+`common.h`. 
+* In our main function, we once again create our epiphany platform object 
+(type `e_platform_t`) and our epiphany workgroup object (type `e_epiphany_t`). 
+* In the next few lines, we declare our two local static arrays, `a` and `b`, 
+whose lengths are set to `N`, from `common.h` (currently `N` is `4096`). 
+* The static array `c` will contain the local sum of products collected from 
+each of the `CORES` cores (`CORES` is currently set to `16` in `common.h`). 
+* The integer `all_done` will allow us to to determine when all the e-cores 
+finish with their work. 
+* The variable `sop` holds the global sum of products, and represents the final 
+value to be outputted to the user.
+* `i` and `j` are just local variables that we will be using. The variable `clr` 
+(which is not set to `0` for some strange reason), will be used for initialization 
+purposes later.
+
+Now, let look at the next few lines:
+{% highlight c%}
+  //Initalize Epiphany device
+  e_init(NULL);                      
+  e_reset_system(); //reset Epiphany
+  e_get_platform_info(&platform);                          
+  e_open(&dev, 0, 0, platform.rows, platform.cols); //open all cores
+
+  //Initialize a/b input vectors on host side  
+  for (i=0; i<N; i++){
+    a[i] = 1;
+    b[i] = 1;	  
+  }
+{% endhighlight %}
+
+* The first three lines are mandatory for all Epiphany host programs, and 
+respectively initializes the host library data structures, performs a full 
+hardware reset of the Epiphany system, and gets information about the Epiphany 
+chip.
+* The line `e_open(&dev, 0, 0, platform.rows, platform.cols)` is a little
+different that what we've seen in the Hello World program. Recall that the 
+`e_open` command creates a workgroup of a particular size, starting at the 
+(`row`, `col`) positions specified and going to the specified end coordinates.
+In this particular case, we are instantiating the entire device as a single 
+workgroup, so that all 16 cores will be utilized.
+* The next four lines simply fills our `a` and `b` arrays with all `1`s. While 
+this may seem counterintuitive at first, it will make sense as we go through 
+the remainder of the example.
+
+Moving on to the main body of the program:
+ 
+{% highlight c%}
+  //1. Copy data (N/CORE points) from host to Epiphany local memory
+  //2. Clear the "done" flag for every core
+  for (i=0; i<platform.rows; i++){
+    for (j=0; j<platform.cols;j++){
+      e_write(&dev, i, j, 0x2000, &a, (N/CORES)*sizeof(int));
+      e_write(&dev, i, j, 0x4000, &b, (N/CORES)*sizeof(int));
+      e_write(&dev, i, j, 0x7000, &clr, sizeof(clr));
+
+    }
+  }
+  //Load program to cores and run
+  e_load_group("e_task.srec", &dev, 0, 0, platform.rows, platform.cols, E_TRUE);
+{% endhighlight %}
+* For every core on the Epiphany device, the program writes the first `N/CORES` 
+elements of the `a` and `b` arrays to the two memory banks located at positions
+`0x2000` and `0x4000` respectively. These two lines are the source of many errors, 
+**if** you try and change the values in our unit vectors `a` and `b`. Of course, 
+in this case it doesn't matter, since each array only contains values of `1`. 
+The `N/CORES` is also potentially problematic, but the program deftly avoids it 
+by dealing with `N` and `CORES` values that are of a power of `2`. See the 
+next post on how to fix this.
+* The program does also initializes the 32-bit section of memory 
+starting at location `0x7000` to 0. This corresponds to the done flag `d` in 
+the device program, `e_task.c`. 
+* The last thing that occurs in this section is that the device program 
+specified by `e_task.srec` is copied over to the specified workgroup (`dev`), 
+across all cores. The `E_TRUE` flag indicates that each core should execute 
+its copy of `e_task.srec` immediately. Recall that every Epiphany host program 
+will have a line that looks like this.
+
+The next few lines has the host spinning until all cores on the device finish 
+their respective computations:
+
+{% highlight c%}
+  //Check if all cores are done
+  while(1){    
+    all_done=0;
+    for (i=0; i<platform.rows; i++){
+      for (j=0; j<platform.cols;j++){
+	e_read(&dev, i, j, 0x7000, &done[i*platform.cols+j], sizeof(int));
+	all_done+=done[i*platform.cols+j];
+      }
+    }
+    if(all_done==16){
+      break;
+    }
+  }
+ {% endhighlight %}
+* The program continuously cycles through every core on the Epiphany device.
+* For every core, it reads the 32-bit value stored at memory location `0x7000`
+and places it in location `i*platforms.cols+j` of the `done` array. This value 
+(which will either be `0` or `1`) is then added to the variable `all_done`. 
+Honestly, we could have just read the value into a single integer variable, but 
+I suppose this illustrates some math on how to read results into an array. 
+* When all the cores raise their `done` flags, `all_done`, will be equal to the 
+value of `CORES`. Another subtle error here is that the example hard-codes the 
+values `16`. It should be `CORES`. The program does not break, because `CORES` 
+is set to `16` in `common.h`.
+
+Now that all computations are complete, we read the data, compute the global 
+sum and output the result:
+{% highlight c%}
+  //Copy all Epiphany results to host memory space
+  for (i=0; i<platform.rows; i++){
+      for (j=0; j<platform.cols;j++){
+	e_read(&dev, i, j, 0x6000, &c[i*platform.cols+j], sizeof(int));
+      }
+  }
+
+  //Calculates final sum-of-product using Epiphany results as inputs
+  sop=0;
+  for (i=0; i<CORES; i++){
+    sop += c[i];
+  }
+
+  //Print out result
+  printf("Sum of Product Is %d!\n",sop);
+  fflush(stdout);
+ {% endhighlight %}
+* Now that we know that each core has a local sum, we cycle through all the 
+cores, and place the 32-bit local sum of products in the array `c`. For any core 
+located at positions (`i`,`j`), we place it in location `i*platform.cols+j` in 
+our array `c`. In this manner, all the data is placed in row-major order in 
+the array. 
+* The next four lines simply reads through our array `c` and calculates the 
+global sum of product, storing the result in the variable `sop`.
+* We then print out the value to the user. The use of `fflush` is curious here, 
+since the `\n` when used in conjunction with `printf` on the previous line 
+should have flushed the buffer.
+
+The last few lines closes the device and does some error checking:
+
+{% highlight c%}
+  //Close down Epiphany device
+  e_close(&dev);
+  e_finalize();
+
+  if(sop==4096){
+    return EXIT_SUCCESS;
+  }
+  else{
+    return EXIT_FAILURE;
+  }
+}
+{% endhighlight %}
+
+* All Epiphany host programs should have the lines `e_close()` and `e_finalize`, 
+since these essentially closes the workgroup, and closes the channel with the 
+Epiphany chip.
+* The next few lines are **supposed** to do some error checking. The simplicity 
+of using unit vectors is that the sum of products is necessarily `N`. Again, 
+the example (incorrectly) hardcores the value `4096`. It would be more correct 
+to change this to `N`. Once again, the program does not break because `N` is 
+set to `4096` in the file `common.h`.
