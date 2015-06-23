@@ -432,3 +432,7 @@ application, where we used some SDRAM memory, use `fast.ldf`.
 * If all the memory (like in this application) is internal to the epiphany chip, 
 use `internal.ldf`. 
 
+##In Class Exercise
+On your own, try and fix the Dot Product program, so that you can calculate the 
+sum of products of arrays of size N where each array contains the values from 
+0..N-1. Hint: you only need to update `common.h` and `main.c`!
