@@ -415,3 +415,20 @@ of using unit vectors is that the sum of products is necessarily `N`. Again,
 the example (incorrectly) hardcores the value `4096`. It would be more correct 
 to change this to `N`. Once again, the program does not break because `N` is 
 set to `4096` in the file `common.h`.
+
+##Running the Code
+Since we stepped through the `build.sh` and `run.sh` files in the Hello World 
+example, we will not do so here. However, we will call to your attention some 
+key differences in each file. 
+
+In the build file, first notice that we are referring to `internal.ldf` instead 
+of `fast.ldf`. Linker Descriptor Files (LDF)s help you choose the memory layout 
+of your Epiphany application.
+
+* If you are planning on storing everything external to the Epiphany chip, use 
+`legacy.ldf`. 
+* If you plan to have some memory outside (like in the case of our Hello World 
+application, where we used some SDRAM memory, use `fast.ldf`.
+* If all the memory (like in this application) is internal to the epiphany chip, 
+use `internal.ldf`. 
+
