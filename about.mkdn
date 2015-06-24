@@ -2,7 +2,7 @@
 layout: default
 title:  About
 ---
-
+<h3 class='vlist' id='about_me'>About Me</h3>
 I am an assistant professor of computer science at West Point. I earned my Ph.D. in computer 
 science at Texas A&M University and my M.S. and Ph.D. in computer science 
 from Rensselaer Polytechnic Institute. My research interests include high 
@@ -12,6 +12,26 @@ to learn more.
 
 Feel free to contact me if you would like to collaborate or have any 
 questions or suggestions. Thanks for visiting!
+
+<h3 class='vlist' id='this_site'>Using Materials</h3>
+
+Please feel free to use any of the material you see on this site for educational 
+purposes. If you plan to publish or present work based on this material, I ask 
+that you please cite the following publications:
+
+Matthews, SJ. "Teaching with Parallella: A First Look in an Undergraduate 
+Parallel Computing Course". *Journal of Computing Sciences in Colleges*, to 
+appear. 2015.
+
+If you plan on presenting or publishing any materials using the disk images 
+or Beowulf cluster tutorials, I ask that you cite the following:
+
+Adams JC, Caswell J, Matthews SJ, Peck C, Shoop E, and Toth D. "Budget Beowulfs: 
+A Showcase of Inexpensive Clusters for Teaching PDC". In *Proceedings of the 
+46th ACM Technical Symposium on Computer Science Education (SIGCSE '15)*. 
+Kansas City, MO. 2015.
+ 
+<h3 class='vlist' id='disclaimers'>Disclaimers</h3>
 
 The opinions expressed on this site are soley my own and do not necessarily 
 reflect the opinions of the Department of Defense or the U.S. Army. 
