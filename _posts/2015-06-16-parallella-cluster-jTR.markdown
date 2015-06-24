@@ -38,6 +38,20 @@ We have written a series of scripts to enable this entire process.
 
 Are you ready? Let’s get started!
 
+##Special Considerations
+Some of you who are already familiar with parallel programming will likely be 
+frowning at all the executable transfers and data transfers via SSH. After all, 
+this step is often unnecessary when writing MPI applications on HPC clusters (save 
+for the initial transfer to the cluster, and the offloading of the data from 
+the cluster to a local machine). So why do we need it here?
+
+The answer lies in the way we've set up our Beowulf clusters. Most HPC systems 
+have a *common file system* that is shared by all the nodes in the cluster, 
+and can be written to concurrently via the the network. In our case, we have 
+four distinct Parallellas and thus four distinct file systems. All the SSHing 
+that you see here is necessary to overcome this hurdle! In other HPC application 
+that you may write in the future, it is all unnecessary.
+ 
 ##What you will need
 This tutorial assumes that you have 2 or more Parallella Desktop edition 
 computers. and have followed my instructons for [initial set up][setup], and 
@@ -69,6 +83,7 @@ parallella-examples/
 The `mpi_testing` directory should be a directory that exists on every Parallella.
 This is incredibly important, as this is the main place where password files 
 will be transferred to and cracked passwords are received. 
+
 
 ##Setting up the worker nodes with John MPI
 Currently, our master node is the only one with the john-mpi.c file. Let's 
