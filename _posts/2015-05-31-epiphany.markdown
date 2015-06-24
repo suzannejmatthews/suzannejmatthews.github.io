@@ -18,9 +18,13 @@ the subject:
 
 [The Dot Product Program][dot]
 
-Setting up a Parallella cluster
+[The Dot Product Program Revisited][dot2]
+
+[Setting up a Parallella cluster][cluster]
 
 [running]:   http://suzannejmatthews.github.io/2015/06/01/running-our-first-epiphany-program/
 [overview]:  http://suzannejmatthews.github.io/2015/06/02/epiphany-overview/
 [hello]:     http://suzannejmatthews.github.io/2015/06/03/epiphany-hello-world/
 [dot]:       http://suzannejmatthews.github.io/2015/06/09/dot-product/
+[dot2]:      http://suzannejmatthews.github.io/2015/06/10/dot-product-revisited/
+[cluster]:   http://suzannejmatthews.github.io/2015/06/15/parallella-cluster/
