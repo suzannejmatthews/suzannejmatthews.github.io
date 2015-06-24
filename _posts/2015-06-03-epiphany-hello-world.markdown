@@ -25,7 +25,7 @@ Parallella, and the structure of epiphany memory. Recall that we have a *host*
 and a *device*. For every application we write, we must create a corresponding 
 program for each. 
 
-(see picture)
+![](http://suzannejmatthews.com/images/host-device-libraries.PNG)
 
 Regardless of whether or not we are choosing to target the Epiphany architecture,
 all programs and user files are stored on the host (the ARM chip). The host 
@@ -52,7 +52,7 @@ epiphany hardware resources. There is also a standard C runtime library, and a
 lightweight kernel. When you deploy a job to the epiphany platform, you are 
 launching a job to a particular Epiphany *workgroup*. 
 
-(see picture)
+![](http://suzannejmatthews.com/images/workgroups.PNG)
 
 An Epiphany workgroup which is a rectangular collection of adjacent eCores on 
 th epiphany chip that is defined at run-time by the host program and is 
