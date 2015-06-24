@@ -70,8 +70,9 @@ mpi_testing/
     |----john_e_demo/
 	 |-----	clean-up.sh
 	 |-----	demo-e.sh
+	 |----- get_files.sh
+	 |----- split.py
 	 |-----	transfer-files.sh
-	 |-----	split.py
 
 parallella-examples/
     |---john/
