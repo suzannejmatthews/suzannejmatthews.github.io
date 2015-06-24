@@ -51,7 +51,8 @@ My image should have the files to run this demo. In case it does not (or if
 you are using different images), download the files in [my repository][repo] 
 onto your master node and ensure that you have the following organization:
 {% highlight bash %}
-mpi_testing/0
+mpi_testing/
+    |--- machinefile
     |----john_e_demo/
 	 |-----	clean-up.sh
 	 |-----	demo-e.sh
