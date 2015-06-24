@@ -252,6 +252,7 @@ int main(int argc, char *argv[]){
 
 The first fifteen lines of the program are very similar to the hello world 
 program that we discussed previously. 
+
 * Notice once again that we declare the mandatory library `e-hal.h`, which is 
 required in all Epiphany host programs. We also include the header file 
 `common.h`. 
