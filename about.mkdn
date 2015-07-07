@@ -4,7 +4,7 @@ title:  About
 ---
 <h3 class='vlist' id='about_me'>About Me</h3>
 I am an assistant professor of computer science at West Point. I earned my Ph.D. in computer 
-science at Texas A&M University and my M.S. and Ph.D. in computer science 
+science at Texas A&M University and my M.S. and B.S. in computer science 
 from Rensselaer Polytechnic Institute. My research interests include high 
 performance computing, data mining, data analysis, computational biology, 
 reproducible science and experimental algorithmics. Please visit my [website](http://www.suzannejmatthews.com)
