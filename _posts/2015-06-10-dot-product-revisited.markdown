@@ -132,6 +132,7 @@ ized to 0..%d using %d Cores.\n",N,N-1,CORES);
 
 Let's break down this program into sections, calling to attention the salient
 changes in each:
+
 ###The header section
 Most of the changes to the first 22 lines of the program largely increase the 
 consistency between the `main.c` and `e_task.c` programs, while gaining us an 
@@ -248,7 +249,7 @@ The next part of the code does not have any significant changes:
 
 * The major change here is that we check if `all_done` is equal to `CORES` 
 rather than `16`. Again, this will assist in our program maintaining correctness 
-as we change the number of `CORES'. 
+as we change the number of `CORES`. 
 * Notice that we change the `sizeof()` function parameter to `unsigned` from 
 `int`. This is actually unnecessary, and is done for stylistic reasons. Please 
 note that both `unsigned` and `int` are 4 bytes. Therefore, there is no difference 
