@@ -20,7 +20,7 @@ below:
 | Parallella Desktop Edition      | 149.00 |
 | 8GB MicroSD card w/adapter      | 6.60    | 
 | MicroUSB to USB (F) cable | 5.99      | 
-| MicroHDMI to USB (F) cable | 2.96      | 
+| MicroHDMI to HDMI (F) cable | 2.96      | 
 | Crossover cable | 3.99      | 
 | **Total** | **191.47**      | 
 
