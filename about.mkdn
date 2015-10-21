@@ -20,8 +20,7 @@ purposes. If you plan to publish or present work based on this material, I ask
 that you please cite the following publications:
 
 Matthews, SJ. "Teaching with Parallella: A First Look in an Undergraduate 
-Parallel Computing Course". *Journal of Computing Sciences in Colleges*, to 
-appear. 2015.
+Parallel Computing Course". *Journal of Computing Sciences in Colleges*, 31(3), pp. 18-27. 2016.
 
 If you plan on presenting or publishing any materials using the disk images 
 or Beowulf cluster tutorials, I ask that you cite the following:
