@@ -18,6 +18,7 @@ below:
 | Name          | Price         | 
 | ------------- |:-------------:| 
 | Parallella Desktop Edition      | 149.00 |
+| IoGear 4-port powered USB hub   |  22.93 |
 | 8GB MicroSD card w/adapter      | 6.60    | 
 | MicroUSB to USB (F) cable | 5.99      | 
 | MicroHDMI to HDMI (F) cable | 2.96      | 
