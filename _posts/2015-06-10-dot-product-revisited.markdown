@@ -289,7 +289,8 @@ the program is to do the following:
 {% highlight bash%}
 cd ~/epiphany-examples/apps/dotproduct
 ./build.sh
-./run.sh
+cd bin
+../run.sh
 {% endhighlight %}
 
 ##In Class Exercises
