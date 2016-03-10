@@ -188,5 +188,5 @@ SSHing into your Parallella, take a look at my other tutorial.
 [sdcard]: https://www.parallella.org/create-sdcard/
 [pdf]: http://www.suzannejmatthews.com/private/Parallella_setup.pdf
 [heatsink]: https://www.parallella.org/install-the-heatsink/
-[stl]: http://www.suzannejmatthews.com/private/par-case.7z
+[stl]: http://www.thingiverse.com/thing:892684
 [sdformat1]: https://github.com/suzannejmatthews/suzannejmatthews.github.io/blob/master/_images/sdformat1.PNG
