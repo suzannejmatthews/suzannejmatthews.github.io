@@ -112,7 +112,11 @@ Reboot the machine by typing
 sudo shutdown -r now
 {% endhighlight %}
 Running `df -h` after it comes back up again should show that you now have 
-the entire disk available for use.
+the entire disk available for use. Note: on the most recent image, you will
+need to run the following command after restarting:
+{% highlight bash %}
+resize2fs /dev/mmcblk0p2
+{% endhighlight %}
 
 ## Building the Case
 The 3D printed case that I provide is specifically designed for the Parallella.
