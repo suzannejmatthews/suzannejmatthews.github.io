@@ -2,7 +2,7 @@
 layout: post
 title:  "Get Wireless on the Parallella"
 date:   2016-03-10 2:42:23
-tags: [main]
+tags: [setup, wireless]
 ---
 I haven't posted here in a while, mainly since I've been very busy with
 other things. Recently, I downloaded the updated image from Adapteva and 
