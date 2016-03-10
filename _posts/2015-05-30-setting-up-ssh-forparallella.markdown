@@ -12,7 +12,7 @@ between the Parallella board and your computer. This page is based off of the
 Ramirez and Jim Beck for their help in putting together the initial draft of 
 this tutorial.  
 
-##What you will need
+## What you will need
 This tutorial assumes that you have access to the following things:
 
 * A Parallella Desktop Edition board that is already setup for initial use. 
@@ -23,7 +23,7 @@ you should still be able to follow the majority of this tutorial using the
 standard CAT5 ethernet cable that you use to connect to the Internet! Crossover 
 cables are specifically designed to let you connect two computers directly.
  
-##Configuring the Parallella with a static IP
+## Configuring the Parallella with a static IP
 We will first configure our Parallella board with a static IP address. This 
 will allow us to connect to the board, even though our Parallella is not 
 connected to the Internet. 
@@ -50,7 +50,7 @@ to process the changes you just made.
 Running `ifconfig` in the terminal when the Parallella comes back up should 
 confirm that your board's IP address is now `10.0.0.3`. 
 
-##Configuring your Putty Install
+## Configuring your Putty Install
 We will now update our Network adapter settings on our Windows machine to 
 enable us to use a static IP address when using a crossover cable. 
 
@@ -76,7 +76,7 @@ you don't, it may be necessary to reboot your machine.
 on. Ensure that you have connectivity to the board by typing `ping 10.0.0.3` 
 into the command window. You should get a series of responses from the board. 
 
-##Connecting to Parallella with Putty
+## Connecting to Parallella with Putty
 Since Windows does not have built in ssh, we use the Putty program to connect 
 to the board using the SSH protocol. 
 
@@ -92,7 +92,7 @@ login prompt.
 If all goes well, you should now be connected to your board! Check out the 
 follow up tutorials on learning how to program Epiphany architecture. 
 
-##Using PSFTP to Transfer Files
+## Using PSFTP to Transfer Files
 PSFTP (Putty Secure FTP) is a free client that you can also download from the 
 [Putty site][putty] that enables you to securely transfer files between 
 computers. PSFTP will acts as an interactive FTP session that allows you to 
@@ -119,7 +119,7 @@ other Linux bash shell commands. In the following set of examples, we will be
 transferring files from the `parallella-files/para-para/src` directory 
 and your Desktop.
 
-###Use `get` to transfer files from Parallella to Windows
+### Use `get` to transfer files from Parallella to Windows
 To transfer files from the Parallella board and place it on the Desktop, we 
 will use the `get` command. Doing this from the `Putty` directory under 
 `Program Files` may lead to an error, since the folder may be write-protected.
@@ -132,7 +132,7 @@ In a few seconds, the `hello-openmp.c` file should appear on your Desktop. A
 screenshot from this sesson is shown below:
 ![](http://suzannejmatthews.com/images/PSFTP_get.PNG) 
 
-###User `put` to transfer files from Windows to Parallella
+### User `put` to transfer files from Windows to Parallella
 To transfer files from Windows to the Parallella board, we start in the 
 same way as before. Start `psftp` from the Desktop, and logon using 
 the command `open linaro@10.0.0.3`. Let's place the file called `data.txt` in 
@@ -147,10 +147,10 @@ You should see `data.txt` now in the folder. A sample screenshot from this
 session is provided below:
 ![](http://suzannejmatthews.com/images/PSFTP_put.PNG) 
 
-##Troubleshooting
+## Troubleshooting
 Below are a series of helpful troubleshooting tips organized in Q/A form.
 
-###My Parallella's IP is not `10.0.0.3`!
+### My Parallella's IP is not `10.0.0.3`!
 You may not have followed the above steps to the letter. I believe the image
 that I posted should automatically configure your board to the above static 
 IP address. In case you chose another image (or for whatever reason, it did not)
@@ -160,7 +160,7 @@ check the following:
 particular, `/etc/hosts` and `/etc/hostname` should have the same hostname!
 * Run `ifconfig -a` to ensure that the address is `10.0.0.3`
 
-###My Windows machine's IP is not `10.0.0.2`!
+### My Windows machine's IP is not `10.0.0.2`!
 Even if you properly followed the instructions for configuring your 
 network adapter above, be sure to do the following:
 
@@ -171,27 +171,27 @@ realize that it should use the alternate configuration.
 * Try turning off your wireless.  
 * Using the `ipconfig` command to ensure that  the IP address is `10.0.0.2`.
 
-###Ok, I *can* connect to my Parallella now, but I can't access the internet!
+### Ok, I *can* connect to my Parallella now, but I can't access the internet!
 Yes, this is an issue with this set of instructions. I haven't quite figured 
 out how to enable SSH for the Parallella without somehow simultaneously 
 disabling your ability to access the internet on your laptop. You may not have 
 this problem, but a significant proportion of my students (thought not all) 
-*while* they were using their Parallella.
+did *while* they were using their Parallella.
 
-###Will I be able to connect to the Internet after I'm done using my Parallella?
+### Will I be able to connect to the Internet after I'm done using my Parallella?
 Once you are done using your Parallella for the day, shut it down using
 `sudo shutdown now`, disconnected the crossover cable and reboot your machine.
 You should be able to get a wireless internet connection or connect your 
 machine via ethernet without having to change any of the settings above.
 
-###I can't seem to transfer files from the Parallella board to my Windows laptop!
+### I can't seem to transfer files from the Parallella board to my Windows laptop!
 Make sure you are following the instructions above for PSFTP. If you are and it 
 is still not working, check and make sure you are not trying to write to a 
 write protected directory. If the directory is write protected, you will not 
 be able to transfer files to it. Transfer the files to a non write-protected 
 directory (like the Desktop) instead.
 
-###Files are taking too long to transfer. What should I do?
+### Files are taking too long to transfer. What should I do?
 Some of you may see the program appear to hang when you are transferring 
 large files. Use compression such as 7zip to compress the files before 
 transfering. This will enable you to transfer larger files more quickly. 
