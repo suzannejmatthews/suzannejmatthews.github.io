@@ -1,8 +1,9 @@
 destination: ./_site
 lsi:         false
-highlighter: pygments
+highlighter: rouge
 markdown:    kramdown
 permalink:   pretty
+gems:    [jekyll-paginate]
 paginate:    5
 exclude:
   #- README.txt
