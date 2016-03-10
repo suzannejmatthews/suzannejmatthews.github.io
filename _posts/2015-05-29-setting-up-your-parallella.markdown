@@ -10,7 +10,7 @@ provided on the Parallella website (update: these instructions have been improve
 quite a bit since I wrote this tutorial.) This page is based off of the 
 [original tutorial][pdf] I wrote in November 2014. 
 
-##What you will need
+## What you will need
 This tutorial assumes that you bought a Parallella Desktop Edition and have access to a Windows machine. I've
 included a list of all the items I purchased for Parallella setup in the table
 below:
@@ -38,7 +38,7 @@ Before you begin the tutorial, please [follow these instructions][heatsink] to p
 install the heatsink for the board. **Do NOT** attempt to use the board without 
 the heatsink!
 
-##Format the SD card
+## Format the SD card
 The SD card will be used to house the *operating system* of our Parallella board.  
 To set up our system for initial use, we must first install an *image* of our 
 desired operating system on it. In essence, an image allows us to get a set of 
@@ -82,7 +82,7 @@ below.
 * Boot up the board. Eventually, a login screen should appear. Login in with 
 username `linaro` and password `linaro`.
 
-##Expanding the image to fit the disk
+## Expanding the image to fit the disk
 This is useful if you have a sd card greater than 8GB. Running 
 {% highlight bash %}
 df -h
@@ -114,7 +114,7 @@ sudo shutdown -r now
 Running `df -h` after it comes back up again should show that you now have 
 the entire disk available for use.
 
-##Building the Case
+## Building the Case
 The 3D printed case that I provide is specifically designed for the Parallella.
 While the Kickstarter gave original backers a case for their Parallella, I'm 
 not aware of one for general purchase. I designed [this case][stl] (with the help 
@@ -142,11 +142,11 @@ Place the LRFs underneath the bottom baseboard. We do not recommend that you
 place the LRFs under the connector positions if you plan to use it as part of 
 a larger cluster (see followup tutorial). 
  
-##Troubleshooting
+## Troubleshooting
 There are a number of problems you may face during setup. I've compiled a list 
 of the most common issues, and ways to rectify them. 
 
-###Nothing comes up! Is my board defective?
+### Nothing comes up! Is my board defective?
 Most likely not. My students and I had no issues with our boards. However, 
 there are a few things you should check for:
 
@@ -162,7 +162,7 @@ port next to the power port! This microUSB port is for power only!
 the keyboard is registering. If your screen remains blank, there may be an 
 issue with the monitor.
 
-###I tried everything you said above, but it still doesn't work!
+### I tried everything you said above, but it still doesn't work!
 If everything above works, and you STILL don't see anything on your monitor 
 then you may be having some other issues. The Parallella board is pretty finicky. 
 A couple things that I'd suggest checking:
