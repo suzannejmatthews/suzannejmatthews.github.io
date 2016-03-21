@@ -9,7 +9,7 @@ complex example that executes in Parallel. This program can be found in the
 `epiphany-examples/apps/dotproduct/` directory on your Parallella board. 
 Before we start discussing the code, let's discuss the problem.
  
-##Calculating Dot Product in Parallel
+## Calculating Dot Product in Parallel
 The dot product between two arrays is the sum of the products. Consider the 
 arrays *A=*[1,2,3] and *B=*[4,5,6]. The dot product of these two arrays is 1x4 + 2x5 +
 3x6 = 4+10+18 = 32. A C implementation of this example follows:
@@ -34,7 +34,7 @@ of two arrays over *n* elements and *c* cores we would do the following:
 elements assigned to it, and send it to the host.
 * the host will sum all the local sums together to yield a final sum of products.
 
-###An example
+### An example
 Consider the arrays *A =* [1,4,5,3] and *B =* [8,4,2,7]. We wish to calculate 
 the dotproduct of *A* and *B* over two cores (*c=2*). Each array has *n=4* 
 elements. 
@@ -64,14 +64,14 @@ dot product program. This is a classic case of task-based parallelism, and
 as you learn parallel computing, you will encounter many other programs that 
 follow this pattern.
 
-##The `dotproduct` example
+## The `dotproduct` example
 The `dotproduct` example can be found the `epiphany-examples/apps/dotproduct/src` 
 folder. Our device program is stored in the file `e_task.c` and the host 
 program is stored in file `main.c`. We also have a header file called `common.h` 
 which will contain the global `N` and `CORES` values that will be used by both 
 the host and device programs. 
 
-###The device program: `e_task.c`
+### The device program: `e_task.c`
 
 Once again, for simplicity, we will start with the device program. 
 {% highlight c linenos%}
@@ -128,7 +128,7 @@ it equal to `0x1`. This is the cue to the host program that it can sum up all
 the values and output it to the user. At this point, we also place the core in
 an idle state.
 
-###The host program: `main.c`. 
+### The host program: `main.c`. 
 Now let's move on to the host program:  
 
 
@@ -417,7 +417,7 @@ the example (incorrectly) hardcores the value `4096`. It would be more correct
 to change this to `N`. Once again, the program does not break because `N` is 
 set to `4096` in the file `common.h`.
 
-##Running the Code
+## Running the Code
 Since we stepped through the `build.sh` and `run.sh` files in the Hello World 
 example, we will not do so here. However, we will call to your attention some 
 key differences in each file. 
@@ -433,7 +433,7 @@ application, where we used some SDRAM memory, use `fast.ldf`.
 * If all the memory (like in this application) is internal to the epiphany chip, 
 use `internal.ldf`. 
 
-##In Class Exercise
+## In Class Exercise
 On your own, try and fix the Dot Product program, so that you can calculate the 
 sum of products of arrays of size N where each array contains the values from 
 0..N-1. Hint: you only need to update `common.h` and `main.c`!

@@ -13,7 +13,7 @@ post was adapted from my slides and lecture notes that I used to teach my
 students during the Epiphany unit we had this past semester. This post
 summarizes the second lesson in the unit.
  
-##Epiphany programming model
+## Epiphany programming model
 Yes, the Parallella people did promise us slick IDE for creating Epiphany 
 programs, but it appears to be largely non-functional, and way too large to 
 be run on the Parallella itself. That's OK. You don't need no stinkin' IDE. 
@@ -36,7 +36,7 @@ compilers, debuggers and other utilities. While we will be writing separate
 programs for the host and the device, all the files will be created and stored 
 on the host.
 
-###Programming the host
+### Programming the host
 The host program is run on the ARM chip and is responsible for managing/deploying 
 the device program on the Epiphany chip. Of the two programs, this is the one 
 that is usually by far the larger. To assist us in creating our host program, 
@@ -44,7 +44,7 @@ Parallella provides us with the Epiphany Hardware Abstraction Layer (eHAL),
 also known as the Epiphany host library. The library is defined in the header 
 file `e-hal.h`. 
 
-###Programming the Epiphany chip
+### Programming the Epiphany chip
 On the Epiphany silicon itself, there are compute kernels, and the Epiphany 
 Hardware Utility Library (eLib), which is also known as the epiphany 
 communications library. The `eLib` provides functions for configuring/querying 
@@ -65,12 +65,12 @@ many workgroups that each run their own separate programs, it is important to
 note that it is up to the programmer to ensure that that no two programs are 
 assigned to the same workgroup.
 
-##Hello World!
+## Hello World!
 Recall that all Epiphany applications must have a separate host and device 
 program. We will start by examining the `hello-world` application located in 
 `epiphany-examples/apps/hello-world/src`. 
 
-###The device program: `e_hello_world.c`
+### The device program: `e_hello_world.c`
 Let’s start by examining the Epiphany device program (`e_hello_world.c`), 
 which is shorter and simpler to understand:
 
@@ -108,7 +108,7 @@ particular hello world message, which is formatted with the core’s id.
 succesfully.
 
 
-###The host program: `hello_world.c`
+### The host program: `hello_world.c`
 The host code is a bit more complicated. Recall that the purpose of the host is 
 to supervise the work of the device, including transferring data to and from 
 the device. Remember that the device cannot do memory fetching or I/O on its 
@@ -302,14 +302,14 @@ The last three lines clean up the program:
 The function `e_free()` frees the external memory buffer and `e_finalize()` 
 finalizes the connection with the epiphany system.
 
-##Compling and Running the Code
+## Compling and Running the Code
 Above the `src` directory in the main `hello-world` directory, there are two 
 files: `build.sh` and `run.sh`. It is best that you create a copy of these files 
 and then customize them for all your future applications. 
 
 We will study each of these files in turn:
 
-###`build.sh`: compiles the `hello-world` application
+### `build.sh`: compiles the `hello-world` application
 Let’s take a look at `build.sh` first:
 {% highlight bash linenos%}
 #!/bin/bash
@@ -370,7 +370,7 @@ a standard assembly file created by Motorola that is commonly used in
 microcontroller applications. Currently, SREC is the only type of file that 
 the Epiphany boards allow.
 
-###`run.sh`: runs the `hello-world` application
+### `run.sh`: runs the `hello-world` application
 Let's now take a look at the `run.sh` file:
 
 {% highlight bash linenos%}
@@ -396,7 +396,7 @@ priviledges, so the `sudo -E` is required. The `-E` flag helps us specify the
 environment. In this case, we also need to specify the location of the hardware 
 descriptor file of the Epiphany board (EHDF). 
 
-##What's this program doing?
+## What's this program doing?
 First, *does this program executing in parallel?* If you have been following 
 closely with our example, you should quickly see that the answer is no! Though 
 the program runs non-deterministically, it is not due to parallel execution.
@@ -408,7 +408,7 @@ created by the `e_open` command is 1x1, or 1 core. So, we randomly access
 a single core `_SeqLen` times, running the hello-world.srec (device program) 
 on it serially.
 
-###In Class Exercise:
+### In Class Exercise:
 Modify the hello-world application so that it prints out hello world on 
 every core *in order*. That is, core (0,0) gets printed out first, core (0,1) 
 second and so on, until all 16 cores output the hello-world message. How does 

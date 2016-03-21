@@ -12,7 +12,7 @@ Ripper, which was contributed by Katja Malvoni, and is accessible under the
 `parallella-examples/john` subdirectory on your Parallella board, or through 
 the [parallela-examples][paragit] Git repository. 
 
-##What is John the Ripper?
+## What is John the Ripper?
 John the Ripper (JtR, or John) is a popular password cracking tool that can be used to 
 crack "weak" UNIX passwords. A weak UNIX password is made up of common words, 
 people's first and/or last names, and common sequences like `1234`. Most 
@@ -49,7 +49,7 @@ long time. However, if the company uses a single salt or *k* salts where
 *k << n*, then John can simply "rip" through the list of passwords, hence its 
 name. 
  
-##How does the John Epiphany program work?
+## How does the John Epiphany program work?
 To understand how John works on Epiphany, you have to pay attention to the 
 Epiphany architecture. We will get into that in greater detail in the next 
 post. For now, it suffices to say that the Epiphany co-processor has 16 total
@@ -94,7 +94,7 @@ katrina		(user3)
 cessna		(user5)
 {% endhighlight %} 
 
-##Benchmarking Results
+## Benchmarking Results
 I did some extensive benchmarking analysis earlier in the school year, but want to 
 double check my numbers. I will post the results soon.
 

@@ -19,7 +19,7 @@ A Show-case of Inexpensive Clusters for Teaching PDC". In Proceedings of the
 46th ACM technical symposium on Computer science education (SIGCSE’15). Kansas 
 City, MO. March 6-8, 2015.
 
-##Program Overview
+## Program Overview
 Recall that one of the most common parallel patterns is the Master-Worker 
 pattern, where a master process (or node) is responsible for creating a delegating 
 a set of tasks to a series of worker processes. All *N* nodes then complete 
@@ -38,7 +38,7 @@ We have written a series of scripts to enable this entire process.
 
 Are you ready? Let’s get started!
 
-##Special Considerations
+## Special Considerations
 Some of you who are already familiar with parallel programming will likely be 
 frowning at all the executable transfers and data transfers via SSH. After all, 
 this step is often unnecessary when writing MPI applications on HPC clusters (save 
@@ -52,7 +52,7 @@ four distinct Parallellas and thus four distinct file systems. All the SSHing
 that you see here is necessary to overcome this hurdle! In other HPC application 
 that you may write in the future, it is all unnecessary.
  
-##What you will need
+## What you will need
 This tutorial assumes that you have 2 or more Parallella Desktop edition 
 computers. and have followed my instructons for [initial set up][setup], and 
 [cluster setup][cluster]. If you are not using my image, make sure you also 
@@ -86,7 +86,7 @@ This is incredibly important, as this is the main place where password files
 will be transferred to and cracked passwords are received. 
 
 
-##Setting up the worker nodes with John MPI
+## Setting up the worker nodes with John MPI
 Currently, our master node is the only one with the john-mpi.c file. Let's 
 compile the code into an executable, and transfer the file to each node.
 To do so, type in the following:
@@ -104,7 +104,7 @@ Now, if you SSH into each of the individual worker nodes and look at their respe
 `mpi_testing/` directories, you should see a `john_mpi` there! Our master node 
 even has a `john_mpi` executable in its `mpi_testing` directory.
 
-###Running the Demo
+### Running the Demo
 Now we have everything we need to run the demo. Do the following:
 {% highlight bash %}
 cd ~/mpi_testing/john_e_demo/
@@ -115,7 +115,7 @@ where `mypass.txt` contains the passwords you want to crack.
 After some processing, you will see a file that shows up in the main directory:
 `mypasscracked.txt`. This will contain the list of all the cracked passwords.
 
-##Explanation of the code
+## Explanation of the code
 Sadly, this part is going to have to wait for a while. One of my students is 
 doing a project using JtR, and is using part of the code. As soon as that 
 project is wrapped up, I will post the MPI file and go through the code in 

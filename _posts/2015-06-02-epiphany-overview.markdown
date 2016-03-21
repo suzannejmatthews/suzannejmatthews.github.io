@@ -16,7 +16,7 @@ properly programming it. Skip this post at your own risk. This post was adapted
 from my slides and lecture notes that I used to teach my students during the 
 Epiphany unit we had this past semester.
  
-##Why co-processors?
+## Why co-processors?
 Let’s start our discussion with chip design, which drives much of the hardware 
 arhchitecture we have available to us. Driven by Moore’s law, chip manufacturers work 
 laboriously to create smaller and smaller cores. The CPUs and the cores we are 
@@ -40,7 +40,7 @@ are dealing with a co-processor or a GPU. While these simplified processors
 cannot do the same range of tasks that CPUs can, they are excellent at many, 
 and are much more energy efficient than a standard CPU.
 
-##What makes a co-processor different from a GPU?
+## What makes a co-processor different from a GPU?
 Like the GPU, the Co-Processor is a simplified processor. Most importantly, it 
 cannot independently fetch memory or do I/O operations. It depends on a 
 closely supervising host CPU to do these tasks. However, co-processors are 
@@ -74,12 +74,12 @@ increased performance in many cases. This brings us to the Epiphany chip, a
 novel co-processor that is developed by Adapteva and is included on every 
 Parallella board.
 
-##The Epiphany Architecture
+## The Epiphany Architecture
 Let’s take a closer look at the Epiphany architecture. To fully understand 
 what is going on here, we will need to take a look at two things: the 
 chip's internal layout/communication model, and memory organization
 
-###Chip layout
+### Chip layout
 The figure below gives an overview of the layout and communication model of 
 the Epiphany chip.
 
@@ -97,7 +97,7 @@ theoretically programmed to run different tasks. This is one of the reasons
 why the Epiphany architecture is a MIMD architecture, unlike the SIMD 
 architecture found in the GPUs.
 
-###Memory structure
+### Memory structure
 The figure below gives an overview of of the memory layout of each memory 
 bank on the Epiphany chip.
 

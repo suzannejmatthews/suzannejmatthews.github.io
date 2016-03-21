@@ -27,7 +27,7 @@ of two vectors containing the elements 0..*N-1* can be defined as:
 ![](http://suzannejmatthews.com/images/sop-equation.gif)
 
 
-##Fixing the Dot Product program
+## Fixing the Dot Product program
 For the initial example, let's pick *N=64*. Using the above equation, the 
 sum of products should be `85344`.
 
@@ -133,7 +133,7 @@ ized to 0..%d using %d Cores.\n",N,N-1,CORES);
 Let's break down this program into sections, calling to attention the salient
 changes in each:
 
-###The header section
+### The header section
 Most of the changes to the first 22 lines of the program largely increase the 
 consistency between the `main.c` and `e_task.c` programs, while gaining us an 
 additional bit of storage. 
@@ -176,7 +176,7 @@ products calculation.
 * We change the `printf` statement to reflect the new type of operations we are 
 performing.
 
-###Initializing and transferring data to the device
+### Initializing and transferring data to the device
 In the next part of the code, we update the values of our `a` and `b` arrays, 
 and update the way we write data to the device. This section of code represents 
 the most critical of the changes.
@@ -222,7 +222,7 @@ Notice also that what gets written to each memory bank is a number of bytes
 equivalent to `sections` elements, as specified by `sections*sizeof(unsigned)`. 
   
 
-###Waiting for the device program to finish, and copying local results 
+### Waiting for the device program to finish, and copying local results 
 The next part of the code does not have any significant changes:
 {% highlight c %}
   //Check if all cores are done
@@ -255,7 +255,7 @@ as we change the number of `CORES`.
 note that both `unsigned` and `int` are 4 bytes. Therefore, there is no difference 
 in passing `int` or `unsigned` to the `sizeof()` function.
 
-###Calculating and printing the result, and finalizing the program.
+### Calculating and printing the result, and finalizing the program.
 Again, there are very few changes to this last section of code:
 {% highlight c%}
   //Calculates final sum-of-product using Epiphany results as inputs
@@ -293,14 +293,14 @@ cd bin
 ../run.sh
 {% endhighlight %}
 
-##In Class Exercises
+## In Class Exercises
 
-###Exercise 1
+### Exercise 1
 * Try and run this program on the `N` value of `2048`. Does the program break? 
 If so, how do you fix it?
 * Can you change the program to support an `N` value of `4096`? 
 
-###Exercise 2 
+### Exercise 2 
 * Update the program so that `a` and `b` contain random integers between `1` and 
 `100`. Remove the checks in the `run.sh` and `main.c` files, and simply output 
 the result.

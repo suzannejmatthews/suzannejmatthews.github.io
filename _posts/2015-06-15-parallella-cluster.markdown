@@ -28,7 +28,7 @@ complete the work in parallel.
 
 Are you ready? Let’s get started!
 
-##What you will need
+## What you will need
 This tutorial assumes that you bought a Parallella Desktop Edition and have 
 access to a Windows machine. If you haven't set up your Parallella yet, please
 see [my instructions for initial set up][setup].
@@ -45,7 +45,7 @@ The picture above shows what each individual Parallella board should look like
 when set up. Begin by setting up only two of the boards. Keep the SD cards and 
 cat5 cables aside for now.
 
-##Setting up the Master Node
+## Setting up the Master Node
 Recall that the microSD card  is used to house the *operating system* on our 
 Parallella. To set up our master node, we first install an image of our desired 
 operating system. In essence, an image allows us to get a set of desired 
@@ -90,7 +90,7 @@ pi is approximately 3.1415926544231318, Error is 0.0000000008333387
 {% endhighlight %}
 If you make it this far, great job! You are ready to create worker nodes.
 
-##Setting up the worker nodes- Part I
+## Setting up the worker nodes- Part I
 Our master node will “communicate” with our worker nodes using the Secure Shell 
 (SSH) protocol. In this next step, we need to give our master node the proper 
 login credentials so it can seamlessly connect to the worker nodes as needed. 
@@ -159,7 +159,7 @@ If the above works, great job! You are ready to create additional worker
 nodes! Unlike our test from the previous section, we are now running our 
 test on multiple nodes!
 
-##Setting up the worker nodes - Part II
+## Setting up the worker nodes - Part II
 Our worker node now contains the proper SSH credentials our master node needs 
 to login seamlessly. To allow our master node to be able to log in to other 
 nodes, we must copy the image of the worker node we just created onto the other 
@@ -209,7 +209,7 @@ pi is approximately 3.1415926544231239, Error is 0.0000000008333307
 Remember these can be out of order (so don’t worry about that). If 
 everything above works, hooray! You are done!
 
-##Building the case
+## Building the case
 Now we have *N* Parallellas networked together. YOur setup probably looks like 
 a mess. Let's build a case for our new cluster. You can use whatever you wish, 
 but [we provide a 3D printed design][case] that you may find attractive/convenient.
@@ -230,7 +230,7 @@ top. Finished cluster is shown below:
 
 ![](http://suzannejmatthews.com/images/parallella-cluster.JPG) 
 
-##Troubleshooting
+## Troubleshooting
 There are a number of problems you may face during setup. I've compiled a list 
 of the most common issues, and ways to rectify them. 
 
