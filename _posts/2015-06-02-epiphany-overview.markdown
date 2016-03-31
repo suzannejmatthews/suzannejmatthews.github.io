@@ -105,12 +105,15 @@ bank on the Epiphany chip.
 
 The memory is a single flat, little-endian address space which is organized to 
 reflect the mesh layout of the ephiphany cores. Each node has an individual 
-bank (cache) of memory of 32KB. On each node, local memory is organized into 4 
+bank of memory of 32KB. On each node, local memory is organized into 4 
 8KB banks. For optimal performance it is suggested that data be placed into
-separate banks. There is additional space reserved for expansion, but is not currently addressed. There
-is also some additional space reserverd for the 64 local registers. 8-bit, 16-bit, 32-bit and 64-bit integer
-(int and char) data types are supported, along with 32-bit floating point numbers (float). Doubles are
-NOT supported and should be avoided.
+separate banks. Please note that these banks of local memory are NOT caches, 
+as there is no established coherence policy between them. There is additional 
+space reserved for expansion, but is not currently addressed. There is also 
+some additional space reserved for the 64 local registers. 8-bit, 16-bit, 
+32-bit and 64-bit integer (int and char) data types are supported, along with 
+32-bit floating point numbers (float). Doubles are NOT supported and should be 
+avoided.
 
 [parallella]:      https://www.parallella.org/
 [pdf2]: http://www.suzannejmatthews.com/private/SSHParallella.pdf 
