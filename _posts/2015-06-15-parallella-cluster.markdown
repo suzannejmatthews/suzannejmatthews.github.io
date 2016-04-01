@@ -117,11 +117,13 @@ where the above IP is the worker node's IP. If a
 route to the machine exists, you will get a response. Be sure to check your 
 connections to the router to ensure that the master node is plugged into the 
 `1` location, and the worker node is plugged into the `2` location. 
+
 * Copy the log-in credentials to your worker node by typing in the following:
 {% highlight bash %}
 cat ~/.ssh/id_rsa.pub | ssh linaro@192.168.1.124 'cat >> .ssh/authorized_keys'
 {% endhighlight %}
 Where `192.168.1.124` should be replaced with the IP of the worker node. 
+
 * When this is done, ensure you can ssh into the worker node without the need 
 for any credentials by typing in the following:
 {% highlight bash %}
@@ -130,6 +132,7 @@ ssh linaro@192.168.1.124
 You should automatically be logged on to the machine, without being asked 
 for any passphrases or passwords. If this doesn’t happen, you did something 
 wrong, and will need to repeat the previous steps in this section.
+
 * Let's change the hostname for this machine. Type in the following command:
 {% highlight bash %}
 sudo nano /etc/hostname
@@ -141,6 +144,7 @@ machine to see changes:
 sudo shutdown -r now
 {% endhighlight %}
 This will restart the worker node, and kick you out of the SSH session.
+
 * Next, let’s repeat the test from the previous section. `cd` into the the 
 `mpi_testing` folder and edit the file `machine_file` and add the IP of your 
 new worker node:
