@@ -138,7 +138,7 @@ wrong, and will need to repeat the previous steps in this section.
 sudo nano /etc/hostname
 {% endhighlight %}
 to launch the nano editor. Replace what's there with something like `worker001`. 
-Make the same change to the last line of the `/etc/hosts/ file. Restart the 
+Make the same change to the last line of the `/etc/hosts/` file. Restart the 
 machine to see changes:
 {% highlight bash %}
 sudo shutdown -r now
