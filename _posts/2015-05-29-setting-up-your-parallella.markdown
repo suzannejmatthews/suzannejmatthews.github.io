@@ -187,6 +187,13 @@ will do the trick. It will not work.
 If you don't want to buy any of the above materials and don't mind just 
 SSHing into your Parallella, take a look at my other tutorial. 
 
+### Other notes
+The default shell is `tcsh` not `bash`. If you (like me) are more comfortable 
+operating in `bash`, do the following in order to switch your default shell, 
+use the `chsh` (change shell) command. Indicate that the new shell should be
+`/bin/bash`. You will need to restart the machine to see this change.
+
+
 [parallella]:      https://www.parallella.org/
 [image]:   http://www.suzannejmatthews.com/private/par-master.7z
 [sdcard]: https://www.parallella.org/create-sdcard/

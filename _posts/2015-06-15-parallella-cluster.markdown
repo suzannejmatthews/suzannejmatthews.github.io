@@ -106,12 +106,13 @@ cd
 ssh-keygen –t rsa –C 'linaro@linaro-nano'
 {% endhighlight %}
 Use the default location. Do NOT enter a passphrase!
-* Determine the IP address of the worker node. Usually with routers it is one 
-number above the IP of your current node. You can test this by typing:
+* Determine the IP address of the worker node. Visit your router's page using 
+a web browser (192.168.1.1) to determine the worker's IP. You can test that you 
+can reach the machine by typing:
 {% highlight bash %}
 ping 192.168.1.124
 {% endhighlight %}
-where the above IP address is 1 plus (or minus) your master node's IP. If a 
+where the above IP is the worker node's IP. If a 
 route to the machine exists, you will get a response. Be sure to check your 
 connections to the router to ensure that the master node is plugged into the 
 `1` location, and the worker node is plugged into the `2` location. 
