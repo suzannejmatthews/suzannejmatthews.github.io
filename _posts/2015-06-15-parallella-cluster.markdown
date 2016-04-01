@@ -106,6 +106,7 @@ cd
 ssh-keygen –t rsa –C 'linaro@linaro-nano'
 {% endhighlight %}
 Use the default location. Do NOT enter a passphrase!
+
 * Determine the IP address of the worker node. Visit your router's page using 
 a web browser (192.168.1.1) to determine the worker's IP. You can test that you 
 can reach the machine by typing:
@@ -129,12 +130,13 @@ ssh linaro@192.168.1.124
 You should automatically be logged on to the machine, without being asked 
 for any passphrases or passwords. If this doesn’t happen, you did something 
 wrong, and will need to repeat the previous steps in this section.
-* Let's change the hostnaem for this machine. Type in the following command:
+* Let's change the hostname for this machine. Type in the following command:
 {% highlight bash %}
 sudo nano /etc/hostname
 {% endhighlight %}
 to launch the nano editor. Replace what's there with something like `worker001`. 
-Restart the machine to see changes:
+Make the same change to the last line of the `/etc/hosts/ file. Restart the 
+machine to see changes:
 {% highlight bash %}
 sudo shutdown -r now
 {% endhighlight %}
