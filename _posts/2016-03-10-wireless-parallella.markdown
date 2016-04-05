@@ -12,7 +12,7 @@ I used last year during the course. For one thing, the new version of the
 kernel has support for wireless. Getting connecting to wireless is a cinch
 using the new image.
 
-### You will neeed: 
+### You will need: 
 * A wireless USB adapter
 * A powered USB hub
 * USB female to microUSB cable
