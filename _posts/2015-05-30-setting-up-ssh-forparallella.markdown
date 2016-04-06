@@ -170,7 +170,10 @@ that is ON. Sometimes, this is what is needed in order for the machine to
 realize that it should use the alternate configuration.
 * Try turning off your wireless.  
 * Using the `ipconfig` command to ensure that  the IP address is `10.0.0.2`.
-
+* Try the following: prior to turning on the parallella, connect the crossover 
+cable to the parallella. Then, turn on the parallella. The network port lights 
+should turn on the parallella. Now, check your laptop's IP address. It 
+should now be `10.0.0.2`.
 ### Ok, I *can* connect to my Parallella now, but I can't access the internet!
 Yes, this is an issue with this set of instructions. I haven't quite figured 
 out how to enable SSH for the Parallella without somehow simultaneously 
