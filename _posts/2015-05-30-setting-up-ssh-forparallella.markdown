@@ -201,7 +201,7 @@ large files. Use compression such as 7zip to compress the files before
 transfering. This will enable you to transfer larger files more quickly. 
 Other than that, be patient!
 
-###Any way to transfer a large number of files at once?
+### Any way to transfer a large number of files at once?
 Try creating an archive (use `tar` or place in a folder and zip it up) and 
 then try to transfer. Be sure to use compression to make sure that the 
 transfer goes as fast as possible. 
