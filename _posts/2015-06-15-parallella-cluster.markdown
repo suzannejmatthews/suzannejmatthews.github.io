@@ -216,8 +216,95 @@ pi is approximately 3.1415926544231239, Error is 0.0000000008333307
 Remember these can be out of order (so don’t worry about that). If 
 everything above works, hooray! You are done!
 
+## Setting up a NFS shared hard drive
+A drawback to the above system is that each node has its own local disk-space. 
+If we want to share files between the nodes, we will have to use something like 
+`scp`. With a large number of files, this can get very tedious. A better solution 
+is to set up a *Network File System (NFS)*. We will mount a hard drive on the 
+master node. Each node on the network will then able to read/write files to 
+the hard drive over the network. Prior to beginning, make sure that you 
+reformat  your selected external hard drive to a linux file system, such as 
+`ext3` or `ext4`. You can easily do this using the `gparted` utility.
+
+### Step 1: Install requisite software
+On all of nodes, install `nfs-common` and `rpcbind` packages:
+{% highlight bash %}
+sudo apt-get install nfs-common rpcbind
+{% endhighlight %}
+
+On just the master node, also install the `nfs-server` package:
+{% highlight bash %}
+sudo apt-get install nfs-server
+{% endhighlight %}
+
+### Step 2: Mount the hard drive on the master node
+After you attach your external HD to the powered USB hub, see where it is 
+located by using the `fdisk` command:
+{% highlight bash %}
+sudo fdisk -l        
+{% endhighlight %}
+A huge amount of output will result. The external hard drive will usually be at 
+the end of this output. Mine is located at `/dev/sda1`. 
+
+Next, create a mount point and mount your hard drive. In the examples below,
+our mount point is `/mnt/nfs` and the hard drive is located at `/dev/sda1`: 
+{% highlight bash %}
+sudo mkdir /mnt/nfs
+sudo chown -R linaro:linaro /mnt/nfs 
+sudo mount /dev/sda1 /mnt/nfs       
+{% endhighlight %}
+
+### Step 3: Export new filesystem
+The `/etc/exports` file allows us to define which folders/files we wish to 
+share with others, and who we wish to share them with. Determine the IPs of 
+all the worker nodes on your network by visiting `192.168.1.1`. In this 
+example, our master node has the IP `192.168.1.123` and our three worker nodes 
+have the IPs `192.168.1.124`, `192.168.1.125` and `192.168.1.126` respectively.
+
+Modify the `/etc/exports` file to include the following lines:
+{% highlight bash %}
+/mnt/nfs 192.168.1.124(rw,sync)
+/mnt/nfs 192.168.1.125(rw,sync)
+/mnt/nfs 192.168.1.126(rw,sync)
+{% endhighlight %}
+This indicates that each of our worker nodes have read/write access to the 
+shared drive located at `/mnt/nfs`, and all writes to the hd on the master
+will be commited immediately to the network.
+
+Reboot the master node, and all the workers.
+
+### Step 4: Mount the hard drive on all the nodes
+When you reboot the machines, the hard drive will no longer be mounted. Let's
+first remount the harddrive on the master node:
+{% highlight bash %}
+sudo mount /dev/sda1 /mnt/nfs
+{% endhighlight %}
+Next, ssh into each of the worker nodes. Check to make sure that we can see 
+the mount point on the master:
+{% highlight bash %}
+showmount -e 192.168.1.123
+{% endhighlight %}
+You should see `/mnt/nfs` being listed, along with all the other worker node 
+IPs.
+
+To mount the hard drive on the worker node, type the following:
+{% highlight bash %}
+sudo mount 192.168.1.123:/mnt/nfs /mnt/nfs
+{% endhighlight %}
+This mounts the `/mnt/nfs` folder on the master to your local `/mnt/nfs` folder.
+Now, you should be able to read/write files to the hardrive!
+
+### Next steps: autofs?
+You can easily wrap the mount command from step 4 in a script, to serially 
+mount the hard drive on all the workers. This is a workaround solution. Ideally, 
+we would  want something like `autofs` to work, which will allow the drive to 
+be automatically mounted on all the workers on boot. Unfortunately, I have not 
+gotten autofs to work correctly, and modifying the `/etc/fstab` file causes 
+heartaches as well. Will put an update here if I end up figuring it out.
+
+
 ## Building the case
-Now we have *N* Parallellas networked together. YOur setup probably looks like 
+Now we have *N* Parallellas networked together. Your setup probably looks like 
 a mess. Let's build a case for our new cluster. You can use whatever you wish, 
 but [we provide a 3D printed design][case] that you may find attractive/convenient.
 
