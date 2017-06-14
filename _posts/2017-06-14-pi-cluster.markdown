@@ -19,7 +19,7 @@ update, which was originally written in August 2014.
 
 Unlike what I did with the Parallella tutorial I posted a couple years back, 
 I'm *NOT* going to transcribe the entire tutorial from the PDF. The instructions
-large still work. A couple things I should note: 
+largely still work. A couple things I should note: 
 
 * my webpage lists images for the [Raspberry Pi 2][image2] and the [Raspberry Pi 3][image] 
   You can use the Raspberry Pi 3 image to create a cluster of Raspberry Pi 3s.
@@ -36,7 +36,7 @@ Raspberry Pi 2s as well.
 As a reminder, pre-requisites for a NFS setup include:
 
 * a hard drive that can be read/written to on Linux
-* a working Raspberry Pi cluster (see above linked tutorial)
+* a working Raspberry Pi cluster (see [tutorial][pdf3])
 
 ### Step 1: Install requisite software on master node
 For the Raspberry Pi 3, the `nfs-common` and `rpcbind` packages are installed
