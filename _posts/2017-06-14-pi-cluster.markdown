@@ -87,7 +87,7 @@ Let's restart some of the key services, and make this file visible on our
 network:
 {% highlight bash %}
 sudo /etc/init.d/rpcbind restart
-sudo /etc/init.d/nfs-kernal-server restart
+sudo /etc/init.d/nfs-kernel-server restart
 sudo exportfs -r
 {% endhighlight %}
 
