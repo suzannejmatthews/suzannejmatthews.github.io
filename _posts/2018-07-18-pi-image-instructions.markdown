@@ -158,7 +158,7 @@ nodes for our Pi cluster:
 10. Next, type in the following command:
     {% highlight bash %}
     cd
-    cat .ssh/id_rsa.pub | ssh 192.168.1.102 'cat >> .ssh/authorized_keys'
+    cat .ssh/id_rsa.pub | ssh 192.168.1.102 "cat >> .ssh/authorized_keys"
     {% endhighlight %}
     
     This will place the public key into the set of authorized keys for the 
