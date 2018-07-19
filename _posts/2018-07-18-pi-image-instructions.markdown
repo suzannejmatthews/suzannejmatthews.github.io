@@ -121,18 +121,11 @@ nodes for our Pi cluster:
    everything up together, and connect the ethernet cables after the router 
    fully boots up.  
 
-* Let's double-check that MPI is still working as expected. Type in the following 
-   commands:
+* Let's double-check that MPI is still working as expected. First, let's use 
+  `ifconfig` to obtain our IP address. In the examples that follow, assume that 
+  `ifconfig' returned `192.168.1.101`. Type in the following commands:
    {% highlight bash %}
    mkdir mpi_test && cd mpi_test
-   ifconfig
-   {% endhighlight %}
-
-* Once obtain your ip address using `ifconfig`, let's actually add it to 
-   a new file called `machinefile`. In the example that followed, we assume that 
-   the ifconfig command returns `192.168.1.101`
-
-* {% highlight bash %}
    echo "192.168.1.101" > machinefile
    mpiexec -f machinefile -n 2 ~/mpich2-build/examples/cpi
    {% endhighlight %}
@@ -201,19 +194,25 @@ All that remains to be done is:
 5. Reboot the new worker node
 6. Add new IP to `machinefile` and rerun the CPI example from above
 
-You  now have a working Raspberry Pi cluster that runs MPI! Congratulations!
+Repeat steps 1-6 as needed until all your worker nodes are connected to the 
+cluster and have unique hostnames. You now have a working Raspberry Pi cluster 
+that runs MPI! Congratulations!
+
+Next steps: [Install NFS on your Raspberry Pi Cluster][nfs]
 
 ## Troubleshooting
 
 Here are some tips if you run into trouble:
 
-*Q: ssh-keygen is suddenly failing! What do I do??*
+**Q: ssh-keygen is suddenly failing! What do I do??**
+
 A: A big difference between Raspbian Stretch + later vs. prior releases of 
    Raspbian is that the SSH server is not turned on by default. Ensure that 
    you run `sudo raspi-config` and enable SSH through option 5. 
 
-*Q: When I try to SSH into the worker node, I get a message saying, "connection 
-    refused". What did I do wrong?*
+**Q: When I try to SSH into the worker node, I get a message saying, "connection 
+    refused". What did I do wrong?**
+
 A: Ensure the worker pi is plugged in. If it, check the ethernet port. Is it 
    receiving data? Check the router home page. Does it have an IP address? 
    Can you ping it? If any of the above fails, your worker node is not properly 
@@ -228,3 +227,4 @@ A: Ensure the worker pi is plugged in. If it, check the ethernet port. Is it
 [win32]: https://sourceforge.net/projects/win32diskimager/ 
 [pdf3]: http://www.suzannejmatthews.com/private/RaspberryPi_cluster.pdf 
 [mpich]: http://www.mpich.org/downloads/
+[nfs]: http://suzannejmatthews.github.io/2017/06/14/pi-cluster/
