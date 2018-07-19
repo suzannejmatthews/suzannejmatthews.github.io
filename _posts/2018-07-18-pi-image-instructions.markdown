@@ -14,7 +14,7 @@ times to create the images that I post on my website for those who are
 interested in using ready-made Raspberry Pi images for classroom use. I even 
 adapted my [own tutorial][pdf3] from these instructions back in 2014.
 
-So where does that us, dear reader? What to do if we wish to create 
+So where does that leave us, dear reader? What to do if we wish to create 
 future images? To assist all of you in your own custom cluster projects, 
 I'm reproducing the instructions for the original tutorial. 
 
@@ -27,11 +27,11 @@ microSD cards you can, since it will save a lot of time in the image creation
 phase. You will also need a laptop with an SD card slot, or an SD card to USB 
 reader.
 
-1. I first use SD Card Formatter first to get rid of anything that could be on the 
+1. I first use [SD Card Formatter][sdformatter] first to get rid of anything that could be on the 
    microSD card to begin with. 
 2. Next, download the latest copy of Raspbian. The one I've downloaded and used 
    for this tutorial is Raspbian stretch.
-3. Use Win32DiskImager or something similar to "burn" the downloaded image onto 
+3. Use [Win32DiskImager][win32] or something similar to "burn" the downloaded image onto 
    your Raspberry Pi. 
 
 Once you complete these three steps, you will be in good shape to start the 
@@ -143,7 +143,54 @@ nodes for our Pi cluster:
 8. Login to your router (usually at `192.168.1.1`) and check the IP address 
    of your worker node. Suppose the worker's IP is `192.168.1.102`. Ensure 
    the node is reachable by using the ping command: `ping 192.168.1.102`
-9. If the node is reachable, let's now try and ssh into it
+9. If the node is reachable, let's now try and ssh into it:
+   `ssh 192.168.1.102`. You wil get prompted for the passphrase. Just CTRL-C
+    it for now. 
+10. Next, type in the following command:
+    {% highlight bash %}
+    cd
+    cat .ssh/id_rsa.pub | ssh 192.168.1.102 'cat >> .ssh/authorized_keys'
+    {% endhighlight %}
+    This will place the public key into the set of authorized keys for the 
+    worker node. 
+11. Now, try and re-SSH into the worker: `ssh 192.168.1.102`. You should now 
+    be able to access it without a password!
+12. You should be now connected to the the worker node. Let's change its 
+    hostname. Type `sudo nano /etc/hostname` to launch the nano editor. 
+    Replace the hostname with something like `worker001`. Restart the machine
+    to see the new changes:
+    {% highlight bash %}
+    sudo shutdown -r now
+    {% endhighlight %}
+    I would also recommend changing this in `/etc/hosts` next to the local 
+    host IP.
+13. Once the worker node comes back up, we can rerun the CPI example from 
+    earlier: 
+    {% highlight bash %}
+    cd mpi_test
+    echo "192.168.1.102" >> machinefile
+    mpiexec -f machinefile ~/mpich2-build/examples/cpi               
+    {% endhighlight %}
+    You should now see the same output from before, but now with two different 
+    hostnames! Great work!
+
+## Burn and Churn
+
+Our worker node now contains the authorized keys for our master node. Burn a 
+copy of your worker node onto your desktop, using Win32DiskImager or something 
+similar and the `read` command. Next, burn the image onto a new microSD card 
+using the `write` command. 
+
+All that remains to be done is:
+
+1. Connect the new worker node to the cluster via the router.
+2. Discover the new worker node's IP address using the router homepage.
+3. SSH into the new worker node (you shouldn't need a password!)
+4. Change the hostname in `/etc/hostname` and `/etc/hosts`.
+5. Reboot the new worker node
+6. Add new IP to `machinefile` and rerun the CPI example from above
+
+You  now have a working Raspberry Pi cluster that runs MPI! Congratulations!
 
 ## Troubleshooting
 
@@ -156,7 +203,14 @@ A: A big difference between Raspbian Stretch + later vs. prior releases of
 
 *Q: When I try to SSH into the worker node, I get a message saying, "connection 
     refused". What did I do wrong?*
-A: 
+A: Ensure the worker pi is plugged in. If it, check the ethernet port. Is it 
+   receiving data? Check the router home page. Does it have an IP address? 
+   Can you ping it? If any of the above fails, your worker node is not properly 
+   connected to the router. Next, double check and ensure that you do have 
+   the SSH server installed on the worker nodes as well. If you did the step 
+   *AFTER* you burned the master image (instead of *before*, like specified in 
+   the instructions, you may have to turn it on the workers as well. This is 
+   the main reason why this command would fail.
 
 [rpi]: http://www.southampton.ac.uk/~sjc/raspberrypi/ 
 [sdformat]: https://www.sdcard.org/downloads/formatter_4/ 
