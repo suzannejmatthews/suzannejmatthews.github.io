@@ -170,13 +170,8 @@ nodes for our Pi cluster:
 12. You should be now connected to the the worker node. Let's change its 
     hostname. Type `sudo nano /etc/hostname` to launch the nano editor. 
     Replace the hostname with something like `worker001`. Restart the machine
-    to see the new changes:
-    {% highlight bash %}
-    sudo shutdown -r now
-    {% endhighlight %}
-    
-    I would also recommend changing this in `/etc/hosts` next to the local 
-    host IP.
+    to see the new changes: `sudo shutdown -r now`. I would also recommend 
+    changing this in `/etc/hosts` next to the local host IP.
 
 13. Once the worker node comes back up, we can rerun the CPI example from 
     earlier: 
@@ -185,8 +180,9 @@ nodes for our Pi cluster:
     echo "192.168.1.102" >> machinefile
     mpiexec -f machinefile ~/mpich2-build/examples/cpi               
     {% endhighlight %}
-    You should now see the same output from before, but now with two different 
-    hostnames! Great work!
+
+You should now see the same output from before, but now with two different 
+hostnames! Great work!
 
 ## Burn and Churn
 
