@@ -27,7 +27,7 @@ microSD cards you can, since it will save a lot of time in the image creation
 phase. You will also need a laptop with an SD card slot, or an SD card to USB 
 reader.
 
-1. I first use [SD Card Formatter][sdformatter] first to get rid of anything that could be on the 
+1. I first use [SD Card Formatter][sdformat] first to get rid of anything that could be on the 
    microSD card to begin with. 
 2. Next, download the latest copy of Raspbian. The one I've downloaded and used 
    for this tutorial is Raspbian stretch.
@@ -71,10 +71,10 @@ Next, let's create some folders that will help us with installation:
 mkdir mpich2-install mpich2-build
 {% endhighlight %}
 
-Next, we are going to `cd` into the mpich2-build directory, and start the 
+Next, we are going to `cd` into the `mpich2-build` directory, and start the 
 configure process. It is absolutely important that you do this in the `build` 
 directory, because otherwise files will install in the `home` directory, which 
-will mess with your permissions. 
+may mess with your permissions. 
 
 In these next steps, I'm also choosing not to install fortran77, since all the 
 MPI programming I do is in C. If you want to have fortran, I encourage you to 
@@ -88,13 +88,13 @@ sudo make
 sudo make install
 {% endhighlight %}
 
-Next, we need to update the PATH variable in .bashrc so that way we will be 
+Next, we need to update the `PATH` variable in `.bashrc` so we will be 
 able to access the MPI executables anywhere. From the home directory:
 
 1. Open up `.bashrc`
 2. Add to the end of the file the line: `PATH=$PATH:/home/pi/mpich2-install/bin`
 
-Once you are done with these, test out mpiexec using the following command:
+Once you are done, test out `mpiexec` using the following command:
 
 {% highlight bash %}
 mpiexec -n 2 hostname
@@ -110,51 +110,63 @@ nodes for our Pi cluster:
 
 1. Using win32diskImager or similar, "read" the contents of the master node 
    and save it onto your desktop. Name it `master.img` or similar.
+
 2. Next, insert a new 8 GB microSD card. Burn `master.img` onto the new microSD 
    card using the "write" command. 
+
 3. Once you are done, network together the worker node and the master node, 
    by connecting them to a router. When rebooting your "cluster", ensure that 
    the router comes up first, followed by the Pis. I like to boot my router, 
    and then connect my Pis to power afterward. Alternatively, you can boot 
    everything up together, and connect the ethernet cables after the router 
    fully boots up.  
-4. Let's determine if things are still working great. Type in the following 
+
+4. Let's double-check that MPI is still working as expected. Type in the following 
    commands:
    {% highlight bash %}
    mkdir mpi_test && cd mpi_test
    ifconfig
    {% endhighlight %}
-5. Once you have your ip address from `ifconfig`, let's actually add it to 
-   a new file called `machinefile`. In the example that followed, assume that 
+
+5. Once obtain your ip address using `ifconfig`, let's actually add it to 
+   a new file called `machinefile`. In the example that followed, we assume that 
    the ifconfig command returns `192.168.1.101`
+
 6. {% highlight bash %}
    echo "192.168.1.101" > machinefile
    mpiexec -f machinefile -n 2 ~/mpich2-build/examples/cpi
    {% endhighlight %}
    You should get some output showing an approximation of pi. If you get here, 
    celebrate!
+
 7. Next, we want to generate ssh keys. Go to the home directory and type in 
    the following commands:
    {% highlight bash %}
-   cd 
+   cd
    ssh-keygen -t rsa -C 'pi@raspberrypi'
    {% endhighlight %}
    Keep pressing enter to accept the defaults. Do NOT enter a passphrase!
+
 8. Login to your router (usually at `192.168.1.1`) and check the IP address 
    of your worker node. Suppose the worker's IP is `192.168.1.102`. Ensure 
    the node is reachable by using the ping command: `ping 192.168.1.102`
+
 9. If the node is reachable, let's now try and ssh into it:
    `ssh 192.168.1.102`. You wil get prompted for the passphrase. Just CTRL-C
     it for now. 
+
 10. Next, type in the following command:
     {% highlight bash %}
     cd
     cat .ssh/id_rsa.pub | ssh 192.168.1.102 'cat >> .ssh/authorized_keys'
     {% endhighlight %}
+    
     This will place the public key into the set of authorized keys for the 
     worker node. 
+
 11. Now, try and re-SSH into the worker: `ssh 192.168.1.102`. You should now 
     be able to access it without a password!
+
 12. You should be now connected to the the worker node. Let's change its 
     hostname. Type `sudo nano /etc/hostname` to launch the nano editor. 
     Replace the hostname with something like `worker001`. Restart the machine
@@ -162,8 +174,10 @@ nodes for our Pi cluster:
     {% highlight bash %}
     sudo shutdown -r now
     {% endhighlight %}
+    
     I would also recommend changing this in `/etc/hosts` next to the local 
     host IP.
+
 13. Once the worker node comes back up, we can rerun the CPI example from 
     earlier: 
     {% highlight bash %}
