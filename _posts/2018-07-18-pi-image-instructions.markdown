@@ -27,12 +27,12 @@ microSD cards you can, since it will save a lot of time in the image creation
 phase. You will also need a laptop with an SD card slot, or an SD card to USB 
 reader.
 
-1. I first use [SD Card Formatter][sdformat] first to get rid of anything that could be on the 
-   microSD card to begin with. 
-2. Next, download the latest copy of Raspbian. The one I've downloaded and used 
-   for this tutorial is Raspbian stretch.
-3. Use [Win32DiskImager][win32] or something similar to "burn" the downloaded image onto 
-   your Raspberry Pi. 
+* I first use [SD Card Formatter][sdformat] first to get rid of anything that could be on the 
+  microSD card to begin with. 
+* Next, download the latest copy of Raspbian. The one I've downloaded and used 
+  for this tutorial is Raspbian stretch.
+* Use [Win32DiskImager][win32] or something similar to "burn" the downloaded image onto 
+  your Raspberry Pi. 
 
 Once you complete these three steps, you will be in good shape to start the 
 process to install MPI.
@@ -41,11 +41,11 @@ process to install MPI.
 
 Once you've booted up your Pi, first set up things in `raspi-config`
 
-1. Enter `sudo raspi-config` in the terminal
-2. If you are not in the UK, select option 4, `Localisation options` Use that 
-   to set the keyboard layout, locale, time zone and WiFi Country. 
-3. Next, select option 5, `Interfacing Options`. Navigate to `SSH` and choose 
-   `Yes` and `Ok` then `Finish`.
+* Enter `sudo raspi-config` in the terminal
+* If you are not in the UK, select option 4, `Localisation options` Use that 
+  to set the keyboard layout, locale, time zone and WiFi Country. 
+* Next, select option 5, `Interfacing Options`. Navigate to `SSH` and choose 
+  `Yes` and `Ok` then `Finish`.
 
 This is a crucial step, because the WiFi country must be enabled in order for 
 you to connect your Pi to WiFi. Lastly, the SSH server is not enabled on the 
@@ -91,8 +91,8 @@ sudo make install
 Next, we need to update the `PATH` variable in `.bashrc` so we will be 
 able to access the MPI executables anywhere. From the home directory:
 
-1. Open up `.bashrc`
-2. Add to the end of the file the line: `PATH=$PATH:/home/pi/mpich2-install/bin`
+* Open up `.bashrc`
+* Add to the end of the file the line: `PATH=$PATH:/home/pi/mpich2-install/bin`
 
 Once you are done, test out `mpiexec` using the following command:
 
@@ -108,38 +108,39 @@ You have successfully created the master node.
 Now, we will create a worker image that we will use to build all the worker 
 nodes for our Pi cluster:
 
-1. Using win32diskImager or similar, "read" the contents of the master node 
+* Using win32diskImager or similar, "read" the contents of the master node 
    and save it onto your desktop. Name it `master.img` or similar.
 
-2. Next, insert a new 8 GB microSD card. Burn `master.img` onto the new microSD 
+* Next, insert a new 8 GB microSD card. Burn `master.img` onto the new microSD 
    card using the "write" command. 
 
-3. Once you are done, network together the worker node and the master node, 
+* Once you are done, network together the worker node and the master node, 
    by connecting them to a router. When rebooting your "cluster", ensure that 
    the router comes up first, followed by the Pis. I like to boot my router, 
    and then connect my Pis to power afterward. Alternatively, you can boot 
    everything up together, and connect the ethernet cables after the router 
    fully boots up.  
 
-4. Let's double-check that MPI is still working as expected. Type in the following 
+* Let's double-check that MPI is still working as expected. Type in the following 
    commands:
    {% highlight bash %}
    mkdir mpi_test && cd mpi_test
    ifconfig
    {% endhighlight %}
 
-5. Once obtain your ip address using `ifconfig`, let's actually add it to 
+* Once obtain your ip address using `ifconfig`, let's actually add it to 
    a new file called `machinefile`. In the example that followed, we assume that 
    the ifconfig command returns `192.168.1.101`
 
-6. {% highlight bash %}
+* {% highlight bash %}
    echo "192.168.1.101" > machinefile
    mpiexec -f machinefile -n 2 ~/mpich2-build/examples/cpi
    {% endhighlight %}
+
    You should get some output showing an approximation of pi. If you get here, 
    celebrate!
 
-7. Next, we want to generate ssh keys. Go to the home directory and type in 
+*  Next, we want to generate ssh keys. Go to the home directory and type in 
    the following commands:
    {% highlight bash %}
    cd
@@ -147,34 +148,34 @@ nodes for our Pi cluster:
    {% endhighlight %}
    Keep pressing enter to accept the defaults. Do NOT enter a passphrase!
 
-8. Login to your router (usually at `192.168.1.1`) and check the IP address 
-   of your worker node. Suppose the worker's IP is `192.168.1.102`. Ensure 
-   the node is reachable by using the ping command: `ping 192.168.1.102`
+* Login to your router (usually at `192.168.1.1`) and check the IP address 
+  of your worker node. Suppose the worker's IP is `192.168.1.102`. Ensure 
+  the node is reachable by using the ping command: `ping 192.168.1.102`
 
-9. If the node is reachable, let's now try and ssh into it:
-   `ssh 192.168.1.102`. You wil get prompted for the passphrase. Just CTRL-C
-    it for now. 
+* If the node is reachable, let's now try and ssh into it:
+  `ssh 192.168.1.102`. You wil get prompted for the passphrase. Just CTRL-C
+  it for now. 
 
-10. Next, type in the following command:
-    {% highlight bash %}
-    cd
-    cat .ssh/id_rsa.pub | ssh 192.168.1.102 "cat >> .ssh/authorized_keys"
-    {% endhighlight %}
+* Next, type in the following command:
+  {% highlight bash %}
+  cd
+  cat .ssh/id_rsa.pub | ssh 192.168.1.102 "cat >> .ssh/authorized_keys"
+  {% endhighlight %}
     
-    This will place the public key into the set of authorized keys for the 
-    worker node. 
+This will place the public key into the set of authorized keys for the worker 
+node. 
 
-11. Now, try and re-SSH into the worker: `ssh 192.168.1.102`. You should now 
-    be able to access it without a password!
+* Now, try and re-SSH into the worker: `ssh 192.168.1.102`. You should now 
+  be able to access it without a password!
 
-12. You should be now connected to the the worker node. Let's change its 
-    hostname. Type `sudo nano /etc/hostname` to launch the nano editor. 
-    Replace the hostname with something like `worker001`. Restart the machine
-    to see the new changes: `sudo shutdown -r now`. I would also recommend 
-    changing this in `/etc/hosts` next to the local host IP.
+* You should be now connected to the the worker node. Let's change its 
+  hostname. Type `sudo nano /etc/hostname` to launch the nano editor. 
+  Replace the hostname with something like `worker001`. Restart the machine
+  to see the new changes: `sudo shutdown -r now`. I would also recommend 
+  changing this in `/etc/hosts` next to the local host IP.
 
-13. Once the worker node comes back up, we can rerun the CPI example from 
-    earlier: 
+* Once the worker node comes back up, we can rerun the CPI example from 
+  earlier: 
     {% highlight bash %}
     cd mpi_test
     echo "192.168.1.102" >> machinefile
