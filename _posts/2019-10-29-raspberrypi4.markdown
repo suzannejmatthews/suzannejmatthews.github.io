@@ -49,6 +49,26 @@ edit is `/boot/usercfg.txt`, NOT `/boot/config.txt`. In these cases, the
 `config.txt` file will warn you not to edit it directly, and point you to the 
 file that should be edited instead. 
 
+## Heat Issues
+
+The next thing I noticed was that the Raspberry Pi 4 runs HOT. This is not an 
+OS issue; the temperature of a Raspberry Pi 3B+ running the new Raspbian 
+Buster OS stays consistent at around 75 degrees when doing `sudo apt get update && 
+apt-get upgrade`. In contrast, the Raspberry Pi 4 running Buster runs 
+significantly hotter, with the SDRAM chip reaching temperatures of 116 degrees.
+
+Thankfully, a new firmware update has been made available that will fixes 
+many of the issues. After running `sudo apt-get update && apt-get upgrade`, run 
+the following two commands:
+
+```
+sudo apt-install rpi-eeprom rpi-eeprom-images
+sudo reboot
+```
+
+Tom's Hardware has a [nice article][thw] explaining the issue in detail 
+and how the firmware updates fix it.
+
 ## Comparing different images for the Raspberry Pi 4
 
 [Raspbian Buster][buster] is (at the time of writing) the newest Raspbian 
@@ -59,8 +79,25 @@ Raspbian. If you want a 64-bit OS, you will need to do a bit more searching.
 I also tried [Ubuntu Server IOT][ubuntu] for the Raspberry Pi 4. This has 
 64-bit support; However, the image is very bare bones, and does not include 
 many of the basic networking tools by default. Therefore, you will need a 
-working Ethernet connection to complete setup.
+working Ethernet connection to complete setup. However, the 64-bit core 
+release is still in beta, and the USB ports don't seem to work for the 4GB 
+version. Ubuntu recommends adding the following line in 
+`/boot/firmware/usercfg.txt` for 4GB models:
+
+```  
+total_mem=3072
+```
+
+This limits the memory on the 4GB model to 3GB. Again, this should not be an 
+issue for the 1GB and 2GB models. [Some channels][omg] are reporting that while 
+Canonical plans to extend full desktop support to the Raspberry Pi 4, it 
+may be a while yet; the immediate focus will be Ubuntu Core.
+
+
+
  
 [buster]: https://www.raspberrypi.org/downloads/raspbian/
 [ubuntu]: https://ubuntu.com/download/iot/raspberry-pi
 [dis]: https://diveintosystems.cs.swarthmore.edu/
+[thw]: https://www.tomshardware.com/features/raspberry-pi-4-firmware-cool-temps-network-boot
+[omg]: https://www.omgubuntu.co.uk/2019/11/ubuntu-raspberry-pi-4-support
