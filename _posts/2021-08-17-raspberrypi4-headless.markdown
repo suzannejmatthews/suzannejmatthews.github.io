@@ -54,6 +54,9 @@ To set this up you will need:
 ## Step 1: Flash the microSD card
 Download the latest Raspberry Pi OS (64-bit) Beta Release at this link:
 https://downloads.raspberrypi.org/raspios_arm64/images/
+**NOTE**: Be sure to download the LATEST image. Since the image is in Beta, 
+it is getting better all the time! As of writing, the latest one is dated 
+MAY 2021, and it's SO much better than the 2020 Beta release image!
 
 After unzipping the file, flash it to a microSD card using something like 
 BalenaEtcher
@@ -66,13 +69,19 @@ After booting it up, complete the following steps:
 2. Update the system by typing `sudo apt-get update && sudo apt-get upgrade` 
    This step is extremely important! This will ensure that the latest software 
    updates for the 64-bit Pi distribution is downloaded to your Pi. If you do 
-   not complete this step, the rest of the tutorial may not work!
+   not complete this step, the rest of the tutorial may not work! Please note 
+   that there ARE definitely packages that need updating. If it appears that 
+   nothing needs to be updated, please check your Internet connection and 
+   try these commands again. It will take several minutes to complete this 
+   step!
 
-3. Install VNC Server and VNC client by typing 
+3. Reboot the Raspberry Pi by typing `sudo reboot`.
+
+4. Install VNC Server and VNC client by typing 
    `sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer` This make take 
    a few minutes to complete, so please be patient!
 
-4. Enable SSH and VNC on the Raspberry Pi through the `raspi-config` menu:
+6. Enable SSH and VNC on the Raspberry Pi through the `raspi-config` menu:
 
    * Type `sudo raspi-config`
    * Go to **Interfacing Options** --> **SSH** to enable the SSH sever
@@ -80,11 +89,10 @@ After booting it up, complete the following steps:
    * (Recommended) Go to **System Options** --> **Hostname** to change hostname
    * (Recommended) Go to **System Options** --> **Password** to change password
 
-5. At this point, restart the pi by typing `sudo reboot` on the command line.
-
-6. To ensure there are not any missing packages, type
-   `sudo apt-get update && sudo apt-get upgrade` one last time.
-
+7. At this point, restart the pi by typing `sudo reboot` on the command line. 
+   When the Raspberry Pi reboots, you should see a blue VNC icon in the 
+   upper-right corner. If you don't see this icon, it's likely that the VNC 
+   server was not enabled. Be sure to enable it!
 
 ## Step 3: Connect to the Pi (from Windows 10)
 For the next set of steps, you will need to know the hostname of the 
@@ -141,9 +149,9 @@ application like Win32 Disk Imager to burn multiple cards at once.
 ## Troubleshooting
 
 ### HDMI monitor issues
-One issue I encountered early with this new and improved Pi image is getting 
-my older HDMI portable monitor to work. The fix is similar to what I blogged 
-about a couple years ago:
+**Resolved by using latest image**:
+Earlier 64-bit images of Raspberry Pi OS have issues with some HDMI monitors 
+working. The fix is similar to what I blogged about two years ago:
 
 * insert the microSD card back into your laptop, and open up the `config.txt` 
   file under the boot partition (/boot/config.txt)
@@ -153,15 +161,17 @@ about a couple years ago:
 * Safely eject the microSD card, and reinsert it into the Pi. Now it should 
   work!
 
+Please note that the latest version of the 64-bit Raspberry Pi OS image does 
+not seem to have this issue.
 
 ### VNC Client issues
-
-One thing I noticed is that the first time I log in via the VNC client, things 
-work great. When I try to log in again via VNC Viewer, it can't seem 
-to reach the Pi. The easiest work around is to just delete the old saved 
-connection in VNC Viewer, and then connect again by following step 6 in the 
-connection instructions above. I'm not entirely sure why this occurs, but it 
-is a mild aggravation.
+**Resolved by using latest image**:
+The 64-bit image that was published in May 2020 has reconnection issues with 
+VNC viewer. In other words, it's possible to VNC into the Raspberry Pi the 
+first time, but successive connections appear to time out. The workaround is 
+to delete the old saved connection in VNC Viewer, and then connnect again 
+by following step 6 in the "Connect to Pi" instructions above. The latest 
+version of the Raspberry Pi OS 64-bit image does not seem to have this issue.
 
  
 [buster]: https://www.raspberrypi.org/downloads/raspbian/
