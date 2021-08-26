@@ -1,27 +1,36 @@
 ---
 layout: post
-title:  "Raspberry Pi 4 - 64-bit headless with VNC"
+title:  "Raspberry Pi OS - 64-bit headless with VNC"
 date:   2031-08-17 15:04:23
-tags: [raspberry pi, rpi4, setup]
+tags: [raspberry pi, raspberry pi os, rpi4, rpi3, setup]
 ---
 
-Since I've last posted, the Raspberry Pi 4 has gotten much easier to use. 
-Today's post is about setting a Raspberry Pi 4 running the 64-bit 
+Today's post is about setting a Raspberry Pi running the 64-bit 
 Raspberry Pi OS for classroom use. This setup is very portable, uses 
 very few cables, and costs about $60.00. For people using the textbook
 _Dive into Systems_, this setup gives students a Linux system that is 
 compatible with the contents of the book (C programming, ARM64 assembly, 
 multicore programming).  
 
+I had originally written this post about the Raspberry Pi 4 specifically, 
+but there seems to be a shortage of available Raspberry Pi 4s to purchase. I 
+therefore adapted this tutorial to work with older models of Raspberry Pi
+(the 3B and 3B+), in case others (like myself) have older boards lying around.
+Please note that this tutorial will not work on the Raspberry Pi 2, which was 
+the last Raspberry Pi with a 32-bit ISA. The Raspberry Pi 3, released in February 
+2016, was the first 64-bit Raspberry Pi, though the Raspbian OS was 32-bit 
+for many years following. Raspberry Pi OS is the successor for Raspbian, and 
+the Raspberry Pi OS 64-bit OS is currently a beta release. 
+
 This tutorial is _much_ simpler than previous tutorials, because the Pi now 
-comes preloaded with Bonjour/Avahi, which greatly simplifies the process by 
-which devices are discovered on a network. That means that for this simple 
+comes preloaded with Avahi/mDNS zero configuration networking, which greatly simplifies the process by 
+which devices are discovered on a network. That means that for a simple 
 classroom setup (where every student gets a single Pi, which they connect 
 directly to a PC), there is no fiddling around with DNS or setting static IPs.
 It is incredibly easy for anyone to set Pis up in this manner. I have confirmed 
-that these instructions work for Windows 10. Furthermore, since Avahi was 
-created by Apple, these directions should work out of the box for Apple 
-computers.
+that these instructions work for Windows 10. Apple implements the Bonjour 
+mDNS responder framework, which means that these instructions should also 
+work for Apple machines right out of the box too.
 
 ## About our classroom
 The classroom I use for my course is currently equipped with a number of 
@@ -29,13 +38,16 @@ Windows desktops running Windows 10. I share this classroom space with a
 number of other professors, all who are teaching different courses, one after 
 the other. Therefore, a dedicated Pi lab really isn't an option, and we don't 
 want students to be tempted to disconnect/reconnect workstations peripherals 
-since it can create problems for classes that take place after mine. 
+as it can create problems for classes that take place after mine. 
 Furthermore, there isn't an easy way for students to connect the bulky power 
-supplies that usually are needed for powering the Pi.
+supplies that usually are needed for powering the Pi, since our power outlets 
+are not located in a convenient place.
 
 ## What our Raspberry Pi Setup looks like
 
 Here is how students connect Raspberry Pi for use in my course:
+
+![pcconnect](http://suzannejmatthews.github.io/images/pi_pc_connection.jpg  "pi pc connection")
 
 
 In this setup, the Raspberry Pi uses the lab workstation for power, and 
@@ -49,7 +61,12 @@ To set this up you will need:
 * A Raspberry Pi 4 + microSD card (8 GB+ recommended) - $40.00
 * An Ethernet cable (1 ft recommended) ($1.00)
 * An Ethernet to USB Adaptor  ($10)
-* A USB to USB-C power cable ($10)
+* A USB to USB-C power cable ($10) -- For Raspberry Pi 4 OR
+* A microUSB to USB-C power cable ($10) -- For Raspberry Pi 3/3B+
+
+Please note that the power cable here is a USB-C. There is an assumption that 
+your computer has a USB-C port. See the "Troubleshooting" section if your 
+machine does not have a USB-C port.
 
 ## Step 1: Flash the microSD card
 Download the latest Raspberry Pi OS (64-bit) Beta Release at this link:
@@ -93,6 +110,25 @@ After booting it up, complete the following steps:
    When the Raspberry Pi reboots, you should see a blue VNC icon in the 
    upper-right corner. If you don't see this icon, it's likely that the VNC 
    server was not enabled. Be sure to enable it!
+
+## Additional configuration instructions for Raspberry Pi 3/3B+
+On older Raspberry Pis, I've noticed that I have headless connection issues. 
+The way I fixed this was by forcing a screen resolution. To do this, I 
+edited `/boot/config.txt` and uncommented out the following lines:
+
+{% highlight bash %}
+framebuffer_width=1920
+framebuffer_height=1080
+hdmi_force_hotplug=1
+{% endhighlight %}
+
+Lastly, go all the way to the bottom of `/boot/config.txt` and **comment out** the following line:
+
+{% highlight bash %}
+#dtoverlay=vc4-kms-v3d
+{% endhighlight %}
+
+
 
 ## Step 3: Connect to the Pi (from Windows 10)
 For the next set of steps, you will need to know the hostname of the 
@@ -143,10 +179,25 @@ When I've used Raspberry Pis in classrooms before, I've had to create a number
 of images. One thing that I like to use is a multi-card SD reader/writer. I 
 got a cheap one many years ago off Amazon that still works great, but can't 
 seem to find the model anywhere anymore. With a multicore PC, you can use an 
-application like Win32 Disk Imager to burn multiple cards at once. 
+application like Win32 Disk Imager to burn multiple cards at once. Simply 
+open the application a number of times that is one less than the number of 
+cores. 
 
 
 ## Troubleshooting
+
+### No USB-C port on PC
+
+This tutorial relies on a USB-C port on your computer to power the Raspberry 
+Pi. If you do not have a USB-C port, we recommend that you use an external 
+power supply. 
+
+It is NOT recommended that you use a USB 3.0 to microUSB cable to supply 
+power to your Raspberry Pi from your PC. While a USB 3.0 port can deliver 
+more power than standard USB 2.0 port, it is usually not sufficient to power 
+the Raspberry Pi 3/3B+. The USB-C port provides much more power, making it 
+much more suitable and reliable for powering current models of the 
+Raspberry Pi.   
 
 ### HDMI monitor issues
 **Resolved by using latest image**:
@@ -165,15 +216,19 @@ Please note that the latest version of the 64-bit Raspberry Pi OS image does
 not seem to have this issue.
 
 ### VNC Client issues
-**Resolved by using latest image**:
-The 64-bit image that was published in May 2020 has reconnection issues with 
-VNC viewer. In other words, it's possible to VNC into the Raspberry Pi the 
-first time, but successive connections appear to time out. The workaround is 
-to delete the old saved connection in VNC Viewer, and then connnect again 
-by following step 6 in the "Connect to Pi" instructions above. The latest 
-version of the Raspberry Pi OS 64-bit image does not seem to have this issue.
+If the VNC client frame is too large/too small for your monitor, you can 
+fix it by going into the `/boot/config.txt` file and modifying the the 
+following two lines:
+
+{% highlight bash %}
+framebuffer_width=1920
+framebuffer_height=1080
+{% endhighlight %}
 
  
+Change the width/height to match your monitor specifications.
+
+
 [buster]: https://www.raspberrypi.org/downloads/raspbian/
 [ubuntu]: https://ubuntu.com/download/iot/raspberry-pi
 [dis]: https://diveintosystems.cs.swarthmore.edu/
