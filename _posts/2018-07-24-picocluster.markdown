@@ -4,6 +4,11 @@ title:  "PicoCluster Review (Raspberry Pi 3B+)"
 date:   2018-07-24 13:20:34
 tags: [raspberry pi, picocluster, review, cluster]
 ---
+*Note: this is a post I created in 2018. I got distracted by some other things 
+and forgot to fully update it. I made some further updates when I discovered 
+the issues in 2021. Sorry!*
+
+
 This is the second cluster system that I'm exploring this summer. In recent
 years a lot of commercial microcluster solutions have started popping up. Last 
 post, I reviewed PiRacks. In this post, I will review Picocluster. As before, 
@@ -19,8 +24,11 @@ classroom use. You can get the case components for $79.00, or the case + a
 switch for $139.00. The last setup intrigued me. Could we use this to assemble 
 a cluster for classroom use?  
 
+
+
 ## First impressions
 The picture below shows all the components that came in the PicoCluster box. 
+
 One thing you should be ware of is that there are no instructions that come 
 packaged with the components. You need to go online to look at assembly 
 instructions. I was surprised about this at first, but it makes sense when 
@@ -34,7 +42,7 @@ cables included.There were five acrylic boards, a bag of metal stand-off pieces,
 networking cables and a few other things. So far, so good. Below you can see 
 all the components laid out:
 
-![pico](http://suzannejmatthews.github.io/images/pico0.jpg  "pico")
+![pico1](http://suzannejmatthews.github.io/images/picluster1.jpg  "picocluster1")
 
 
 ## Assembly: Attempt 1
@@ -43,9 +51,7 @@ accomplished through the use of the metal standoffs. I assumed this would be a
 trivial process, considering how easy it was to assemble the PiRacks, which had 
 a similar assembly structure. Boy, was I wrong. The metal standoffs were a 
 tight fit in the mounting holes of the Pi. I had to prethread the metal 
-standoffs in the mounting holes before attaching the Pi. Here is what it looked 
-after I finished adding the standoffs to one Pi:
-![pico1](http://suzannejmatthews.github.io/images/pico1.jpg  "pico1")
+standoffs in the mounting holes before attaching the Pi. 
 
 Surprisingly, it took me an incredibly long time to even stack five Pis. This 
 could largely be due to my relative inexperience with metal standoffs, but I 
@@ -55,7 +61,7 @@ standoffs together, but that was usually because I wasn't holding my parts
 perfectly straight. Here is what my cluster looked like once I finished 
 assembling the 5 pis:
 
-![pico2](http://suzannejmatthews.github.io/images/pico2.jpg  "pico2")
+![pico2](http://suzannejmatthews.github.io/images/picocluster2.jpg  "pico2")
 
 At this point, I felt reasonably confident that I was halfway done. It turned 
 out that the journey was just beginning. 
@@ -70,16 +76,42 @@ My first impression when I handled the PDU is that it was damaged. There is a
 pretty large dent in the heatsink, and one of the wire clamps fell off almost 
 immediately. You can see some of the issues in the pictures below:
 
-![piracks2](http://suzannejmatthews.github.io/images/piracks2.jpg  "piracks2")
+![picopsu](http://suzannejmatthews.github.io/images/psu-pico1.jpg  "psu")
 
-However, there was a larger problem: it turned out that the PMU was not 
+![picopsu2](http://suzannejmatthews.github.io/images/psu-pico2.jpg  "psu2")
+
+However, there was a larger problem: it turned out that the PDU was not 
 working properly. I asked one of our department techs for help troubleshooting, 
 and he verified that the PDU was only outputting 2.7V (instead of the 5V) that 
 is needed. I reached out to the PicoCluster customer support team, and they 
 responded pretty quickly. With any luck, I will get a replacement part soon.
 
+**UPDATE**
 
+I got the replacement part in about two weeks which was great. The new PDU 
+worked well! You can see the assembled cluster here:
 
+![pico3](http://suzannejmatthews.github.io/images/picocluster3.jpg  "pico3")
+
+The cluster certainly worked fine, and was a very sleek, compact setup. We 
+ended up using this setup for some undergraduate research. However, one 
+outstanding question is was it all worth it?
+
+## Final Thoughts
+
+My feelings about the PicoCluster were mixed. For beginners, this is probably 
+a great setup, since everything is already there. However, the issues with the 
+PDU were very troubling, and I found some configurations to just be 
+prohibitively costly for use in the classroom. 
+
+A larger issue is that the Raspberry Pi evolves at such a rapid rate. Any 
+commercial clustering system that comes with power management runs the risk 
+of not keeping up with the times. Furthermore, people who buy clustering 
+systems with power management run the risk of the PDU becoming quickly 
+obsolete with newer and newer Pis. It will be very interesting to see if 
+companies like Picocluster will end up selling a wide array of PDUs to 
+ensure that their customers do not have to buy a completely new kit every 
+time the underlying SBC gets updated. 
 
 [rpi]: http://www.southampton.ac.uk/~sjc/raspberrypi/ 
 [image]: http://www.suzannejmatthews.com/private/pi3b+_master.7z 
