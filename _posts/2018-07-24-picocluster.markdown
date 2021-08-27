@@ -42,7 +42,7 @@ cables included.There were five acrylic boards, a bag of metal stand-off pieces,
 networking cables and a few other things. So far, so good. Below you can see 
 all the components laid out:
 
-![pico1](http://suzannejmatthews.github.io/images/picluster1.jpg  "picocluster1")
+![pico1](http://suzannejmatthews.github.io/images/picocluster1.jpg  "picocluster1")
 
 
 ## Assembly: Attempt 1
