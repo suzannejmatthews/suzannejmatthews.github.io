@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Raspberry Pi OS - 64-bit headless with VNC"
-date:   2031-08-17 15:04:23
+date:   2021-08-17 15:04:23
 tags: [raspberry pi, raspberry pi os, rpi4, rpi3, setup]
 ---
 
