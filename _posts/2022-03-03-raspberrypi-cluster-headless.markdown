@@ -9,7 +9,7 @@ Yesterday, I was in Providence RI presenting a [workshop with the CSinParallel
 folks][workshop] at [SIGCSE'22][sigcse]. As part of the workshop, we demo'd the 
 *self organizing clusters* that my students use at West Point (shown below):
 
-![wpsoc](https://www.learnpdc.org/archive/WP-cluster.jpg  "West Point Self Organizing Cluster")
+![wpsoc](https://raw.githubusercontent.com/suzannejmatthews/suzannejmatthews.github.io/master/images/WP-cluster.png  "West Point Self Organizing Cluster")
 
 Before I continue, I should mention that these clusters are truly a reflection 
 of the collaborative effort that is CSinParallel. Specifically:
